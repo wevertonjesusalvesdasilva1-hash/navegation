@@ -1,6 +1,7 @@
 import { NextRequest, NextResponse } from 'next/server';
 
-export const runtime = 'edge';
+export const runtime = 'nodejs';
+export const maxDuration = 30;
 
 export async function GET(request: NextRequest) {
   const url = request.nextUrl.searchParams.get('url');
@@ -10,23 +11,42 @@ export async function GET(request: NextRequest) {
     return NextResponse.json({ error: 'URL inválida' }, { status: 400 });
   }
 
+  const chromiumPath = process.env.CHROMIUM_PATH;
+
   try {
-    const screenshotUrl = `https://image.thum.io/get/width/1280/crop/800/${url}`;
-    const response = await fetch(screenshotUrl, {
-      headers: { 'User-Agent': 'Mozilla/5.0 (compatible; WebProxy/1.0)' },
-    });
-
-    if (!response.ok) {
-      throw new Error(`thum.io retornou ${response.status}`);
+    if (chromiumPath) {
+      const puppeteer = await import('puppeteer-core');
+      const browser = await puppeteer.default.launch({
+        executablePath: chromiumPath,
+        args: ['--no-sandbox', '--disable-setuid-sandbox', '--disable-dev-shm-usage', '--disable-gpu'],
+        defaultViewport: { width: 1280, height: 800 },
+        headless: true,
+      });
+      const page = await browser.newPage();
+      await page.setUserAgent(
+        'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36'
+      );
+      await page.goto(url, { waitUntil: 'networkidle2', timeout: 20000 }).catch(() =>
+        page.goto(url, { waitUntil: 'domcontentloaded', timeout: 20000 })
+      );
+      await new Promise((r) => setTimeout(r, 1500));
+      const screenshot = await page.screenshot({ type: 'jpeg', quality: 85, fullPage: false });
+      await browser.close();
+      return new NextResponse(new Uint8Array(screenshot as Buffer), {
+        headers: { 'Content-Type': 'image/jpeg', 'Cache-Control': 'no-store' },
+      });
+    } else {
+      // Fallback: thum.io (Vercel sem Chromium instalado)
+      const screenshotUrl = `https://image.thum.io/get/width/1280/crop/800/${url}`;
+      const response = await fetch(screenshotUrl, {
+        headers: { 'User-Agent': 'Mozilla/5.0 (compatible; WebProxy/1.0)' },
+      });
+      if (!response.ok) throw new Error(`thum.io retornou ${response.status}`);
+      const buffer = await response.arrayBuffer();
+      return new NextResponse(buffer, {
+        headers: { 'Content-Type': 'image/jpeg', 'Cache-Control': 'no-store' },
+      });
     }
-
-    const buffer = await response.arrayBuffer();
-    return new NextResponse(buffer, {
-      headers: {
-        'Content-Type': 'image/jpeg',
-        'Cache-Control': 'no-store',
-      },
-    });
   } catch (err) {
     const msg = err instanceof Error ? err.message : 'Erro desconhecido';
     return new NextResponse(
