@@ -11,7 +11,7 @@ export async function GET(request: NextRequest) {
   }
 
   try {
-    const screenshotUrl = `https://image.thum.io/get/width/1280/crop/800/noanimate/${encodeURIComponent(url)}`;
+    const screenshotUrl = `https://image.thum.io/get/width/1280/crop/800/${url}`;
     const response = await fetch(screenshotUrl, {
       headers: { 'User-Agent': 'Mozilla/5.0 (compatible; WebProxy/1.0)' },
     });
