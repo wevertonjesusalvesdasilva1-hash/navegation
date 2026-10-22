@@ -45,3 +45,10 @@ npx vercel deploy
 - Claude.ai e ChatGPT bloqueiam iframes por política CORS/CSP
 - Vercel pode ser bloqueado por alguns sites
 - Fallback: Railway ou servidor próprio para Puppeteer completo
+
+## Capacidade Produtiva (`/capacidade`)
+App web de capacidade da usinagem (UMC01, UMC02, NCBZ, HMC-16), com dados do Excel do Gilmar.
+- Edite cenários, turnos, plano, tempos e veja o impacto na hora. O estado fica salvo no navegador (Exportar/Importar JSON).
+- Motor de cálculo: `lib/capacidade.ts`. Dados: `tools/dados_usinagem.json`.
+- Excel equivalente: `Capacidade_Produtiva_Caldeiraria.xlsx`, gerado por `python3 tools/gerar_capacidade.py <saida.xlsx>`.
+- Reextrair dados: `python3 -I tools/extrair_usinagem.py <arquivo_original.xlsx>`.

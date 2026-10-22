@@ -10,6 +10,10 @@ from openpyxl.utils import get_column_letter as L
 
 OUT = next((a for a in sys.argv[1:] if a.endswith(".xlsx")), "Capacidade_Produtiva_Caldeiraria.xlsx")
 TESTE = "--teste" in sys.argv
+import json, os
+_j = os.path.join(os.path.dirname(os.path.abspath(__file__)), "dados_usinagem.json")
+REAL = json.load(open(_j, encoding="utf-8")) if os.path.exists(_j) and not TESTE else None
+NF = 4
 
 NC, NM, NB = 15, 6, 200          # células, máquinas, linhas da base
 B0 = 6; B1 = B0 + NB - 1         # linhas da BASE
@@ -24,13 +28,13 @@ VERDE = PatternFill("solid", bgColor="C6EFCE"); AMAR = PatternFill("solid", bgCo
 
 wb = Workbook()
 names = ["DASHBOARD", "SIMULADOR", "CAP_CELULA", "USINAGEM", "MAO_OBRA", "TEMPOS", "DEMANDA_CARGA",
-         "COMPARATIVO", "BASE", "PARAMETROS", "DIAGNOSTICO", "INSTRUCOES"]
+         "COMPARATIVO", "PLANO", "BASE", "PARAMETROS", "DIAGNOSTICO", "INSTRUCOES"]
 ws = {}
 for i, n in enumerate(names):
     ws[n] = wb.active if i == 0 else wb.create_sheet(n)
     ws[n].title = n
     ws[n].sheet_view.showGridLines = False
-D, S, C, U, M, T, DC, CO, B, P, DG, IN = (ws[n] for n in names)
+D, S, C, U, M, T, DC, CO, PL, B, P, DG, IN = (ws[n] for n in names)
 for n, col in [("DASHBOARD", "1F3864"), ("SIMULADOR", "C00000"), ("PARAMETROS", "BF8F00"), ("BASE", "BF8F00"), ("MAO_OBRA", "BF8F00")]:
     ws[n].sheet_properties.tabColor = col
 
@@ -65,28 +69,32 @@ HH = '0.0;-0.0;;@'; PCT = '0.0%;-0.0%;;@'; INT = '0;-0;;@'
 
 # ---------------------------------------------------------------- PARAMETROS
 title(P, "PARÂMETROS GERAIS", "Amarelo = editável (azul). Valores marcados PROVISÓRIO são premissas a confirmar com a Engenharia/PCP.")
-rows = [(4, "Dias úteis no mês", 22, "0", "PROVISÓRIO"), (5, "Dias trabalhados na semana", 5, "0", "PROVISÓRIO"),
+rows = [(4, "Dias úteis no mês (vem da aba PLANO)", "=INDEX(PLANO!C5:N5,MATCH(C3,PLANO!C4:N4,0))", "0", "origem: 1.Available (arquivo Gilmar)" if REAL else "PROVISÓRIO"), (5, "Dias trabalhados na semana", 5, "0", "PROVISÓRIO"),
         (6, "Limite ATENÇÃO (amarelo) — utilização ≥", 0.85, "0%", "configurável"),
         (7, "Limite INSUFICIENTE (vermelho) — utilização ≥", 1.0, "0%", "configurável"),
         (8, "Base do Sogyodo (Nominal / Efetiva)", "Nominal", None, "PREMISSA: Sogyodo = carga ÷ capacidade (confirmar definição da empresa)")]
 for r, lab, v, f, note in rows:
     P.cell(r, 2, lab); put(P, f"C{r}", v, "in", f); P.cell(r, 4, note).font = Font(italic=True, color="C00000")
+P["B3"] = "Mês do plano de produção"; put(P, "C3", REAL["meses"][6] if REAL else "mês 1", "in", bold=True)
+dvm = DataValidation(type="list", formula1="=PLANO!$C$4:$N$4"); P.add_data_validation(dvm); dvm.add("C3")
 P["B9"] = "Cenário em análise (índice)"; put(P, "C9", '=MATCH(DASHBOARD!C3,C17:F17,0)', "calc")
 dv = DataValidation(type="list", formula1='"Nominal,Efetiva"'); P.add_data_validation(dv); dv.add("C8")
 hdr(P, 10, ["", "Turno", "Início", "Término", "Pausas (min)", "Horas líquidas"])
-for k, (nm, a, b) in enumerate([("A", "06:00", "14:00"), ("B", "14:00", "22:00"), ("C", "22:00", "06:00")]):
+for k, (nm, a, b) in enumerate([("A", "07:30", "17:08"), ("B", "20:40", "05:37"), ("C", "22:00", "06:00")] if REAL else [("A", "06:00", "14:00"), ("B", "14:00", "22:00"), ("C", "22:00", "06:00")]):
     r = 11 + k; P.cell(r, 2, f"Turno {nm}").font = Font(bold=True)
     from datetime import time
     hh, mm = map(int, a.split(":")); h2, m2 = map(int, b.split(":"))
     put(P, f"C{r}", time(hh, mm), "in", "hh:mm"); put(P, f"D{r}", time(h2, m2), "in", "hh:mm")
-    put(P, f"E{r}", 60, "in", "0"); put(P, f"F{r}", f"=MOD(D{r}-C{r},1)*24-E{r}/60", "calc", "0.00")
-P["G11"] = "PROVISÓRIO: horários e pausas a confirmar"; P["G11"].font = Font(italic=True, color="C00000")
+    put(P, f"E{r}", (0 if (REAL and k == 2) else 60), "in", "0"); put(P, f"F{r}", f"=MOD(D{r}-C{r},1)*24-E{r}/60", "calc", "0.00")
+P["G11"] = "A/B: jornada ponderada seg-qui+sex do arquivo (8,63h e 7,95h líq.). C: 8h do arquivo, horário a confirmar" if REAL else "PROVISÓRIO: horários e pausas a confirmar"; P["G11"].font = Font(italic=True, color="C00000")
 P["B15"] = "CENÁRIOS (colunas C–E editáveis; F = Simulação livre, vem da aba SIMULADOR)"; P["B15"].font = Font(bold=True, color=AZUL)
 hdr(P, 17, ["", "Parâmetro", "Atual", "Ajustado", "Otimizado", "Simulação"], 1)
 P["B17"].value = "Parâmetro"; P["A17"].value = ""
 labs = ["Turno A ativo (1/0)", "Turno B ativo (1/0)", "Turno C ativo (1/0)", "Horas extras por turno/dia (h)", "Dias com HE no mês",
         "Eficiência operacional", "Disponibilidade", "Fator de demanda (1,20 = +20%)", "Fator de tempo (0,90 = -10%)", "Base de tempo (Padrão/Real)"]
 defs = {"C": [1, 0, 0, 0, 0, .85, .90, 1, 1, "Padrão"], "D": [1, 1, 0, 0, 0, .85, .90, 1, 1, "Padrão"], "E": [1, 1, 0, 0, 0, .90, .92, 1, .9, "Padrão"]}
+if REAL:  # arquivo Gilmar: performance 84,6% (1.Available I69), frequência 95,5% (G22), fator 0,9 (4.Load Time), HE 0,8 h/dia por pessoa (J22)
+    defs = {"C": [1, 0, 0, 0, 0, .845969, .955, 1, .9, "Padrão"], "D": [1, 1, 0, 0, 0, .845969, .955, 1, .9, "Padrão"], "E": [1, 1, 0, 0.8, "=C4", .845969, .955, 1, .9, "Padrão"]}
 fm = ["0", "0", "0", "0.0", "0", "0%", "0%", "0.00", "0.00", None]
 dvb = DataValidation(type="list", formula1='"Padrão,Real"'); P.add_data_validation(dvb)
 dvf = DataValidation(type="list", formula1='"0,1"'); P.add_data_validation(dvf)
@@ -96,35 +104,42 @@ for k, lab in enumerate(labs):
     put(P, f"F{r}", f"=SIMULADOR!C{7 + k}", "calc", fm[k])
     if k < 3: dvf.add(f"C{r}:E{r}")
     if k == 9: dvb.add(f"C{r}:E{r}")
-P["G23"] = "PROVISÓRIO (todos os cenários): confirmar eficiência/disponibilidade"; P["G23"].font = Font(italic=True, color="C00000")
+P["G23"] = "Arquivo: eficiência=performance 84,6%, disponibilidade=frequência 95,5%. Fator tempo 0,9 = multiplicador do Load Time." if REAL else "PROVISÓRIO (todos os cenários): confirmar eficiência/disponibilidade"; P["G23"].font = Font(italic=True, color="C00000")
 P["B28"] = "Horas efetivas por funcionário/mês (calc)"
 for col in "CDEF":
     put(P, f"{col}28", f"=$C$4*({col}18*$F$11+{col}19*$F$12+{col}20*$F$13)*{col}23*{col}24", "calc", "0.0")
 P["B31"] = "LISTAS"; P["B31"].font = Font(bold=True, color=AZUL)
 hdr(P, 31, ["", "Máquinas de usinagem", "Observação"])
 for j in range(NM):
-    put(P, f"B{32 + j}", ["UMC-01", "UMC-02", "HMC-16"][j] if j < 3 else None, "in")
+    put(P, f"B{32 + j}", (REAL["maquinas"] if REAL else ["UMC-01", "UMC-02", "HMC-16"])[j] if j < (4 if REAL else 3) else None, "in")
 hdr(P, 39, ["", "Famílias", ""])
-for j, f in enumerate(["HE/PC", "WL/WA", "CT"]): put(P, f"B{40 + j}", f, "in")
+for j, f in enumerate(["HE/PC", "WL/WA", "CT", "MG"]): put(P, f"B{40 + j}", f, "in")
 P["B44"] = "Eficiência por processo = Tempo padrão ÷ Tempo real (aba TEMPOS). Setup entra na carga como min/lote ÷ lote."
 widths(P, {"A": 3, "B": 46, "C": 13, "D": 13, "E": 13, "F": 13, "G": 40})
 
 # ---------------------------------------------------------------- BASE
 title(B, "BASE DE DADOS", "Uma linha = peça × processo. Preencha só as colunas amarelas. Colunas cinza são calculadas. Use o filtro (setas) por família, modelo, célula ou máquina.")
 hdr(B, 5, ["Família", "Modelo", "Peça", "Processo", "Célula", "Máquina usinagem", "Operadores (h-homem)", "Tempo padrão (min/pç)",
-           "Tempo real (min/pç)", "Setup (min/lote)", "Lote (pç)", "Demanda mensal (pç)", "Observação / Pendência",
+           "Tempo real (min/pç)", "Setup (min/lote)", "Lote (pç)", "Demanda do mês (pç) — vem de PLANO", "Observação / Pendência",
            "Tempo real efetivo", "Setup min/pç", "Operadores efetivo", "Eficiência proc. (TP/TR)"])
 for r in range(B0, B1 + 1):
     for c in range(1, 14): put(B, f"{L(c)}{r}", None, "in")
+    put(B, f"L{r}", f'=IF(B{r}="",0,IFERROR(INDEX(PLANO!$C$6:$N$40,MATCH(B{r},PLANO!$B$6:$B$40,0),MATCH(PARAMETROS!$C$3,PLANO!$C$4:$N$4,0)),0))', "calc", "0")
     put(B, f"N{r}", f"=IF(I{r}>0,I{r},H{r})", "calc", "0.00")
     put(B, f"O{r}", f"=IF(K{r}>0,J{r}/K{r},0)", "calc", "0.000")
     put(B, f"P{r}", f"=IF(G{r}>0,G{r},1)", "calc", "0")
     put(B, f"Q{r}", f'=IF(AND(H{r}>0,I{r}>0),H{r}/I{r},"")', "calc", "0%")
 B.freeze_panes = "A6"; B.auto_filter.ref = f"A5:Q{B1}"
-dvfam = DataValidation(type="list", formula1="=PARAMETROS!$B$40:$B$42"); B.add_data_validation(dvfam); dvfam.add(f"A{B0}:A{B1}")
+dvfam = DataValidation(type="list", formula1="=PARAMETROS!$B$40:$B$43"); B.add_data_validation(dvfam); dvfam.add(f"A{B0}:A{B1}")
 dvcel = DataValidation(type="list", formula1=f"=MAO_OBRA!$A$6:$A${5 + NC}", allow_blank=True); B.add_data_validation(dvcel); dvcel.add(f"E{B0}:E{B1}")
 dvmq = DataValidation(type="list", formula1="=PARAMETROS!$B$32:$B$37", allow_blank=True); B.add_data_validation(dvmq); dvmq.add(f"F{B0}:F{B1}")
 widths(B, {"A": 10, "B": 14, "C": 16, "D": 16, "E": 14, "F": 14, "G": 11, "H": 12, "I": 12, "J": 11, "K": 9, "L": 13, "M": 30, "N": 11, "O": 10, "P": 11, "Q": 12})
+if REAL:
+    for k, l in enumerate(REAL["linhas"]):
+        r = B0 + k
+        for c, key in enumerate(["familia", "modelo", "peca"], 1): B.cell(r, c).value = l[key]
+        B.cell(r, 4).value = "USINAGEM"; B.cell(r, 6).value = l["maquina"]; B.cell(r, 8).value = l["tp"]
+        B.cell(r, 13).value = "Setup, lote e tempo real: pendentes (não constam no arquivo)"
 if TESTE:
     import random; random.seed(1)
     for r in range(B0, B0 + 24):
@@ -132,6 +147,23 @@ if TESTE:
         vals = [fam, f"M{r % 4}", f"P{r}", "Solda", f"CEL-{(r % 5) + 1:02d}" if r % 4 else None, ["UMC-01", "UMC-02", "HMC-16"][r % 3] if r % 4 == 0 else None,
                 2, 30 + r, 35 + r, 60, 20, 100 + 10 * r]
         for c, v in enumerate(vals, 1): B.cell(r, c).value = v
+
+# ---------------------------------------------------------------- PLANO
+title(PL, "PLANO DE PRODUÇÃO (máquinas/mês) E DIAS ÚTEIS", "Fonte: 3. Production Plan e 1.Available (arquivo Gilmar). Edite as quantidades; a BASE e todos os cálculos atualizam.")
+hdr(PL, 4, ["", "Modelo", *(REAL["meses"] if REAL else [f"mês {i}" for i in range(1, 13)]), "Média", "Família"])
+PL["B5"] = "Dias úteis"; PL["B5"].font = Font(bold=True)
+for k in range(12): put(PL, f"{L(3 + k)}5", REAL["dias"][k] if REAL else None, "in", "0")
+put(PL, "O5", "=AVERAGE(C5:N5)", "calc", "0.0")
+for i in range(35):
+    r = 6 + i
+    p = REAL["plano"][i] if REAL and i < len(REAL["plano"]) else None
+    put(PL, f"B{r}", p["modelo"] if p else None, "in")
+    for k in range(12): put(PL, f"{L(3 + k)}{r}", p["qtd"][k] if p else None, "in", "0")
+    put(PL, f"O{r}", f'=IF(B{r}="","",AVERAGE(C{r}:N{r}))', "calc", "0.0"); put(PL, f"P{r}", p["familia"] if p else None, "in")
+put(PL, "B41", "TOTAL", "res", bold=True)
+for k in range(13): put(PL, f"{L(3 + k)}41", f"=SUM({L(3 + k)}6:{L(3 + k)}40)", "res", "0")
+widths(PL, {"A": 3, "B": 16, "P": 10}); [setattr(PL.column_dimensions[L(c)], "width", 8) for c in range(3, 16)]
+PL.freeze_panes = "C6"
 
 # ---------------------------------------------------------------- MAO_OBRA
 title(M, "MÃO DE OBRA E TURNOS", "Funcionários por célula e turno em cada cenário. Cenário 'Simulação' = Atual + variação definida no SIMULADOR.")
@@ -151,7 +183,7 @@ for i in range(NC):
 r = 6 + NC
 put(M, f"A{r}", "TOTAL", "res", bold=True)
 for c in range(3, 19): put(M, f"{L(c)}{r}", f"=SUM({L(c)}6:{L(c)}{r - 1})", "res", "0", True)
-dvc = DataValidation(type="list", formula1="=PARAMETROS!$B$40:$B$42", allow_blank=True); M.add_data_validation(dvc); dvc.add(f"B6:B{5 + NC}")
+dvc = DataValidation(type="list", formula1="=PARAMETROS!$B$40:$B$43", allow_blank=True); M.add_data_validation(dvc); dvc.add(f"B6:B{5 + NC}")
 widths(M, {"A": 14, "B": 10}); [M.column_dimensions.__setitem__(L(c), M.column_dimensions[L(c)]) for c in range(3, 19)]
 for c in range(3, 19): M.column_dimensions[L(c)].width = 9
 M.freeze_panes = "C6"
@@ -332,7 +364,7 @@ D["B3"] = "Cenário:"; put(D, "C3", "Atual", "in", bold=True); D["D3"] = "Famíl
 D["B4"] = "Filtro família:"; put(D, "C4", "TODAS", "in", bold=True)
 D["E3"].value = None
 dvsc = DataValidation(type="list", formula1="=PARAMETROS!$C$17:$F$17"); D.add_data_validation(dvsc); dvsc.add("C3")
-dvfa = DataValidation(type="list", formula1='"TODAS,HE/PC,WL/WA,CT"'); D.add_data_validation(dvfa); dvfa.add("C4")
+dvfa = DataValidation(type="list", formula1='"TODAS,HE/PC,WL/WA,CT,MG"'); D.add_data_validation(dvfa); dvfa.add("C4")
 D["D3"].value = None
 D["F3"] = "Verde = suficiente | Amarelo = atenção | Vermelho = insuficiente (limites em PARAMETROS C6:C7)"; D["F3"].font = Font(italic=True, color="7F7F7F")
 kp = ["Capacidade disponível (h)", "Carga planejada (h)", "Utilização", "Horas excedentes (h)", "Horas ociosas (h)", "Func. necessários", "Func. disponíveis", "Horas extras necessárias (h)", "Sogyodo"]
@@ -369,14 +401,24 @@ for j in range(NM):
     for col, src, fmt in [("E", "F", HH), ("F", "H", HH), ("G", "I", PCT), ("H", "J", '0.0;-0.0;0.0'), ("I", "N", None)]: put(D, f"{col}{r}", I(src), "res", fmt)
 mq1 = m0 + NM - 1
 cf_util(D, f"G{m0}:G{mq1}"); cf_status(D, f"I{m0}:I{mq1}")
+hdr(D, 9, ["", *["USINAGEM — " + k for k in ["capacidade (h)", "carga (h)", "utilização", "horas excedentes (h)", "horas ociosas (h)", "máquinas insuficientes", "máquinas em atenção", "horas extras necessárias (h)", "Sogyodo"]]])
+D.row_dimensions[9].height = 40
+mg = lambda col: f"${col}${m0}:${col}${mq1}"
+ku = [f"=SUM({mg('E')})", f"=SUM({mg('F')})", "=IF(B10>0,C10/B10,0)", f"=SUMPRODUCT(({mg('H')}<0)*(-{mg('H')}))", f"=SUMPRODUCT(({mg('H')}>0)*{mg('H')})",
+      f'=COUNTIF({mg("I")},"INSUFICIENTE")', f'=COUNTIF({mg("I")},"ATENÇÃO")', "=E10",
+      '=IF(PARAMETROS!$C$8="Nominal",D10*INDEX(PARAMETROS!$C$23:$F$23,PARAMETROS!$C$9)*INDEX(PARAMETROS!$C$24:$F$24,PARAMETROS!$C$9),D10)']
+for k, (v_, f_) in enumerate(zip(ku, [HH, HH, PCT, HH, HH, INT, INT, HH, PCT])):
+    c = put(D, f"{L(2 + k)}10", v_, "res", f_, True); c.font = Font(bold=True, size=14); c.alignment = Alignment(horizontal="center")
+D.row_dimensions[10].height = 28
+cf_util(D, "D10:D10")
 f0 = mq1 + 4
 D[f"A{f0 - 2}"] = "CAPACIDADE POR FAMÍLIA"; D[f"A{f0 - 2}"].font = Font(bold=True, color=AZUL, size=12)
 hdr(D, f0 - 1, ["#", "Família", "", "", "Capacidade (h)", "Carga (h)", "Utilização"])
-for k in range(3):
+for k in range(NF):
     r = f0 + k; put(D, f"A{r}", k + 1); put(D, f"B{r}", f"=PARAMETROS!B{40 + k}", "calc")
     put(D, f"E{r}", f"=SUMPRODUCT(({rg('C')}=B{r})*{rg('E')})", "res", HH); put(D, f"F{r}", f"=SUMPRODUCT(({rg('C')}=B{r})*{rg('F')})", "res", HH)
     put(D, f"G{r}", f"=IF(E{r}>0,F{r}/E{r},0)", "res", PCT)
-cf_util(D, f"G{f0}:G{f0 + 2}")
+cf_util(D, f"G{f0}:G{f0 + NF - 1}")
 k0 = f0 + 6
 D[f"A{k0 - 2}"] = "RANKING — CÉLULAS MAIS SOBRECARREGADAS (filtro aplicado)"; D[f"A{k0 - 2}"].font = Font(bold=True, color=AZUL, size=12)
 hdr(D, k0 - 1, ["Pos.", "Célula", "", "", "Capacidade (h)", "Carga (h)", "Utilização"])
@@ -392,7 +434,7 @@ D.column_dimensions["N"].width = 3
 cat_c = Reference(D, min_col=2, min_row=c0, max_row=c1)
 bar(D, "Carga × capacidade por célula (h)", cat_c, [(Reference(D, min_col=5, min_row=12, max_row=c1), True), (Reference(D, min_col=6, min_row=12, max_row=c1), True)], "O3", 18, 7.5)
 bar(D, "Utilização das máquinas de usinagem", Reference(D, min_col=2, min_row=m0, max_row=mq1), [(Reference(D, min_col=7, min_row=m0 - 1, max_row=mq1), True)], "O19", 18, 7.5)
-bar(D, "Capacidade por família (h)", Reference(D, min_col=2, min_row=f0, max_row=f0 + 2), [(Reference(D, min_col=5, min_row=f0 - 1, max_row=f0 + 2), True), (Reference(D, min_col=6, min_row=f0 - 1, max_row=f0 + 2), True)], "O35", 18, 7.5)
+bar(D, "Capacidade por família (h)", Reference(D, min_col=2, min_row=f0, max_row=f0 + NF - 1), [(Reference(D, min_col=5, min_row=f0 - 1, max_row=f0 + NF - 1), True), (Reference(D, min_col=6, min_row=f0 - 1, max_row=f0 + NF - 1), True)], "O35", 18, 7.5)
 bar(D, "Distribuição de mão de obra (funcionários por célula)", cat_c, [(Reference(D, min_col=4, min_row=12, max_row=c1), True)], "O51", 18, 7.5)
 bar(D, "Gargalos — ranking de utilização", Reference(D, min_col=2, min_row=k0, max_row=k0 + 4), [(Reference(D, min_col=7, min_row=k0 - 1, max_row=k0 + 4), True)], "X3", 16, 7.5)
 bar(D, "Comparação dos cenários — utilização geral", Reference(CO, min_col=3, max_col=6, min_row=4), [(Reference(CO, min_col=2, max_col=6, min_row=8), True)], "X19", 16, 7.5)
@@ -424,7 +466,7 @@ for r in range(B0, B1 + 1):
                       f'IFERROR(INDEX(USINAGEM!$I$6:$I${5 + 4 * NM},(PARAMETROS!$C$9-1)*{NM}+MATCH(F{r},PARAMETROS!$B$32:$B$37,0)),0))'), "res", PCT)
     put(DC, f"K{r}", f'=IF(AND(C{r}<>"",J{r}>0,J{r}=SUMPRODUCT(MAX(($B${B0}:$B${B1}=B{r})*($C${B0}:$C${B1}=C{r})*$J${B0}:$J${B1}))),"◄ GARGALO","")', "res")
     put(DC, f"L{r}", f"=H{r}+I{r}+ROW()/10000000", "calc", "0.00")
-for k in range(3):
+for k in range(NF):
     r = 6 + k
     put(DC, f"N{r}", f"=PARAMETROS!B{40 + k}", "calc")
     put(DC, f"O{r}", f"=SUMIF($A${B0}:$A${B1},N{r},$G${B0}:$G${B1})", "res", "#,##0")
@@ -443,11 +485,20 @@ def lines(w, rows, start=3):
         if b: w.cell(r, 2, b).alignment = Alignment(wrap_text=True, vertical="top")
 lines(DG, [
     ("STATUS DOS ARQUIVOS DE ORIGEM", None),
-    ("Planilhas originais", "NÃO foram recebidas no repositório. Nenhum tempo padrão, demanda, efetivo ou célula foi inventado. A BASE está vazia; as abas MAO_OBRA e BASE esperam os dados reais."),
-    ("Pendências de entrada", "Preencher: células e famílias (MAO_OBRA), funcionários por turno/cenário, peça×processo com tempos, setup, lote e demanda (BASE), horários reais dos turnos, dias úteis, eficiência e disponibilidade."),
-    ("Premissas PROVISÓRIAS", "Dias úteis=22, 5 dias/semana, turnos 06-14/14-22/22-06 com 60 min de pausa, eficiência 85% e disponibilidade 90%. São apenas pontos de partida (marcados em vermelho em PARAMETROS)."),
-    ("Sogyodo", "Definição adotada: carga ÷ capacidade (nominal por padrão; trocar para Efetiva em PARAMETROS C8). Confirmar a fórmula usada hoje pela Komatsu."),
-    ("Auditoria do original", "Ao receber os arquivos, comparar fórmulas, vínculos quebrados e duplicidades e registrar aqui. Resultados do modelo devem ser conferidos contra os totais originais."),
+    *([
+    ("Arquivo analisado", "capacidade_usinagem.xlsx (Gilmar): 21 abas, 9 ocultas. Carregado: plano 12 meses por modelo (3. Production Plan), dias úteis e jornada (1.Available), tempos de usinagem UMC01/UMC02/NCBZ/HMC-16 (4.Load Time)."),
+    ("Conferência (mês out/26)", "Carga calculada = original: UMC01 308,56 h, UMC02 268,86 h, NCBZ 95,07 h, HMC-16 245,12 h. Capacidade 1 turno = 146,47 h (igual). 2 turnos = 281,35 h vs 281,24 h do original (diferença 0,04%: o original usa média ponderada seg-qui/sex do 2º turno; aqui pausa fixa de 60 min)."),
+    ("Resultado do plano atual", "Com 1 turno, UMC01 (211%), UMC02 (184%) e HMC-16 (167%) não atendem; NCBZ atende (65%). Com 2 turnos, UMC01 ainda fica em 110%; UMC02 96% e HMC-16 87% ficam em atenção."),
+    ("Erros no original", "~5.600 células com erro (#REF!, #N/A, #DIV/0!, #VALUE!), concentradas nas abas ocultas 4.Load Time (Real/Padrão) e 9.Machine Load Time. Em 4.Load Time: Workload (E9) = SUM(...,#REF!) e Sogyodo (E12) quebrados; Sogyodo real 0,98 e 0,58 digitados à mão; PITCH-TIME (HE) = #DIV/0!."),
+    ("Inconsistências", "(1) Fator 0,9 fixo dentro das fórmulas de Time per Model (agora parâmetro 'Fator de tempo'); (2) capacidade de máquina usa frequência e performance de funcionário (95,5% × 84,6%), sem considerar PM, setup ou tyorei da aba 8.Machine Available time; (3) nomes de modelos divergem entre abas (PC200 × PC200-8 × PC200-10M0), gerando #N/A em RESPOSIÇÃO e impedindo ligar a aba 9 ao plano."),
+    ("Pendências de dados", "(1) 377 combinações peça×modelo da aba 4.Load Time sem tempo de usinagem (peças como U-Frame, Garfo, Canhão, Mancal, Haste, Bracket, Frame): só 42 linhas têm tempo; (2) setup, lote e tempo real não constam; (3) a aba 9 (tempos por jig/serra da Caldeiraria) não foi carregada por conflito de nomes de modelo; (4) funcionários por célula (usar MAO_OBRA) — a aba CALDEIRARIA do arquivo é lista nominal e não foi copiada por conter dados pessoais."),
+    ("Sogyodo", "Definição adotada: carga ÷ capacidade (nominal por padrão; alternar em PARAMETROS C8). Confirmar a fórmula usada pela Komatsu."),
+    ("Premissas HE", "Cenário Otimizado usa 0,8 h/dia de HE por turno (J22 do original) — o original soma HE sem aplicar eficiência; aqui aplica."),
+    ] if REAL else [
+    ("Planilhas originais", "Não carregadas nesta versão. Preencher BASE, PLANO e MAO_OBRA."),
+    ("Premissas PROVISÓRIAS", "Dias úteis=22, turnos 06-14/14-22/22-06 com 60 min de pausa, eficiência 85% e disponibilidade 90%."),
+    ("Sogyodo", "Definição adotada: carga ÷ capacidade."),
+    ]),
     ("LÓGICA IMPLEMENTADA", None),
     ("Horas líquidas do turno", "MOD(término − início, 1)×24 − pausas/60 (aceita turno C que cruza meia-noite)."),
     ("Capacidade nominal (h-homem)", "Dias úteis × Σ(funcionários do turno × turno ativo × horas líquidas do turno)."),

@@ -1,0 +1,730 @@
+{
+ "meses": [
+  "abr/26",
+  "mai/26",
+  "jun/26",
+  "jul/26",
+  "ago/26",
+  "set/26",
+  "out/26",
+  "nov/26",
+  "dez/26",
+  "jan/27",
+  "fev/27",
+  "mar/27"
+ ],
+ "dias": [
+  19,
+  20,
+  21,
+  18,
+  21,
+  21,
+  21,
+  19,
+  18,
+  13,
+  20,
+  18
+ ],
+ "plano": [
+  {
+   "modelo": "D51-22",
+   "familia": "CT",
+   "qtd": [
+    6,
+    20,
+    8,
+    18,
+    13,
+    8,
+    14,
+    18,
+    12,
+    9,
+    16,
+    18
+   ]
+  },
+  {
+   "modelo": "D51-24",
+   "familia": "CT",
+   "qtd": [
+    19,
+    22,
+    22,
+    3,
+    15,
+    20,
+    23,
+    42,
+    35,
+    16,
+    27,
+    17
+   ]
+  },
+  {
+   "modelo": "D61-23",
+   "familia": "CT",
+   "qtd": [
+    17,
+    32,
+    15,
+    27,
+    27,
+    26,
+    16,
+    27,
+    15,
+    13,
+    26,
+    29
+   ]
+  },
+  {
+   "modelo": "D61-24",
+   "familia": "CT",
+   "qtd": [
+    24,
+    36,
+    43,
+    38,
+    34,
+    45,
+    45,
+    27,
+    47,
+    46,
+    38,
+    28
+   ]
+  },
+  {
+   "modelo": "D71-24",
+   "familia": "CT",
+   "qtd": [
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0
+   ]
+  },
+  {
+   "modelo": "GD655-5",
+   "familia": "MG",
+   "qtd": [
+    4,
+    10,
+    7,
+    8,
+    10,
+    11,
+    10,
+    8,
+    11,
+    9,
+    10,
+    10
+   ]
+  },
+  {
+   "modelo": "PC130",
+   "familia": "HE/PC",
+   "qtd": [
+    12,
+    23,
+    17,
+    12,
+    26,
+    24,
+    18,
+    18,
+    15,
+    13,
+    20,
+    24
+   ]
+  },
+  {
+   "modelo": "PC160",
+   "familia": "HE/PC",
+   "qtd": [
+    2,
+    11,
+    4,
+    4,
+    0,
+    3,
+    3,
+    0,
+    0,
+    0,
+    0,
+    0
+   ]
+  },
+  {
+   "modelo": "PC200",
+   "familia": "HE/PC",
+   "qtd": [
+    20,
+    18,
+    22,
+    21,
+    25,
+    25,
+    16,
+    22,
+    19,
+    17,
+    25,
+    22
+   ]
+  },
+  {
+   "modelo": "PC210F",
+   "familia": "HE/PC",
+   "qtd": [
+    0,
+    1,
+    0,
+    2,
+    2,
+    2,
+    2,
+    4,
+    5,
+    6,
+    6,
+    0
+   ]
+  },
+  {
+   "modelo": "PC220F",
+   "familia": "HE/PC",
+   "qtd": [
+    2,
+    1,
+    9,
+    14,
+    11,
+    11,
+    11,
+    15,
+    15,
+    13,
+    20,
+    15
+   ]
+  },
+  {
+   "modelo": "PC210",
+   "familia": "HE/PC",
+   "qtd": [
+    31,
+    38,
+    28,
+    31,
+    32,
+    33,
+    32,
+    27,
+    28,
+    16,
+    32,
+    34
+   ]
+  },
+  {
+   "modelo": "PC210LC",
+   "familia": "HE/PC",
+   "qtd": [
+    21,
+    17,
+    18,
+    15,
+    18,
+    13,
+    16,
+    16,
+    12,
+    14,
+    15,
+    16
+   ]
+  },
+  {
+   "modelo": "PC240",
+   "familia": "HE/PC",
+   "qtd": [
+    3,
+    6,
+    5,
+    8,
+    8,
+    10,
+    8,
+    3,
+    14,
+    13,
+    14,
+    13
+   ]
+  },
+  {
+   "modelo": "PC360",
+   "familia": "HE/PC",
+   "qtd": [
+    8,
+    21,
+    11,
+    14,
+    15,
+    12,
+    15,
+    14,
+    15,
+    11,
+    17,
+    17
+   ]
+  },
+  {
+   "modelo": "WA200",
+   "familia": "WL/WA",
+   "qtd": [
+    22,
+    33,
+    25,
+    12,
+    21,
+    14,
+    22,
+    20,
+    24,
+    11,
+    25,
+    26
+   ]
+  },
+  {
+   "modelo": "WA320",
+   "familia": "WL/WA",
+   "qtd": [
+    5,
+    9,
+    5,
+    5,
+    4,
+    4,
+    15,
+    9,
+    9,
+    6,
+    11,
+    13
+   ]
+  },
+  {
+   "modelo": "WA380",
+   "familia": "WL/WA",
+   "qtd": [
+    3,
+    8,
+    6,
+    8,
+    6,
+    3,
+    8,
+    6,
+    6,
+    4,
+    6,
+    5
+   ]
+  },
+  {
+   "modelo": "WA150",
+   "familia": "WL/WA",
+   "qtd": [
+    0,
+    0,
+    0,
+    1,
+    0,
+    6,
+    8,
+    11,
+    10,
+    9,
+    13,
+    15
+   ]
+  },
+  {
+   "modelo": "PC500",
+   "familia": "HE/PC",
+   "qtd": [
+    5,
+    6,
+    9,
+    8,
+    6,
+    8,
+    9,
+    8,
+    8,
+    5,
+    7,
+    11
+   ]
+  },
+  {
+   "modelo": "GD535-5",
+   "familia": "MG",
+   "qtd": [
+    1,
+    1,
+    1,
+    0,
+    0,
+    0,
+    2,
+    1,
+    1,
+    1,
+    1,
+    0
+   ]
+  }
+ ],
+ "maquinas": [
+  "UMC01",
+  "UMC02",
+  "NCBZ",
+  "HMC-16"
+ ],
+ "linhas": [
+  {
+   "familia": "CT",
+   "modelo": "D51-22",
+   "peca": "S-CASE",
+   "maquina": "UMC01",
+   "tp": 58
+  },
+  {
+   "familia": "CT",
+   "modelo": "D51-24",
+   "peca": "S-CASE",
+   "maquina": "UMC01",
+   "tp": 58
+  },
+  {
+   "familia": "CT",
+   "modelo": "D61-23",
+   "peca": "S-CASE",
+   "maquina": "UMC01",
+   "tp": 54
+  },
+  {
+   "familia": "CT",
+   "modelo": "D61-24",
+   "peca": "S-CASE",
+   "maquina": "UMC01",
+   "tp": 54
+  },
+  {
+   "familia": "WL/WA",
+   "modelo": "WA200",
+   "peca": "HINGE CENTER",
+   "maquina": "UMC01",
+   "tp": 46.23
+  },
+  {
+   "familia": "WL/WA",
+   "modelo": "WA150",
+   "peca": "HINGE CENTER",
+   "maquina": "UMC01",
+   "tp": 55
+  },
+  {
+   "familia": "WL/WA",
+   "modelo": "WA320",
+   "peca": "HINGE CENTER",
+   "maquina": "UMC01",
+   "tp": 55
+  },
+  {
+   "familia": "WL/WA",
+   "modelo": "WA380",
+   "peca": "HINGE CENTER",
+   "maquina": "UMC01",
+   "tp": 55
+  },
+  {
+   "familia": "HE/PC",
+   "modelo": "PC130",
+   "peca": "MESA CENTRAL",
+   "maquina": "UMC01",
+   "tp": 100.2
+  },
+  {
+   "familia": "HE/PC",
+   "modelo": "PC200",
+   "peca": "MESA CENTRAL",
+   "maquina": "UMC01",
+   "tp": 126
+  },
+  {
+   "familia": "HE/PC",
+   "modelo": "PC210LC",
+   "peca": "MESA CENTRAL",
+   "maquina": "UMC01",
+   "tp": 126
+  },
+  {
+   "familia": "HE/PC",
+   "modelo": "PC210F",
+   "peca": "MESA CENTRAL",
+   "maquina": "UMC01",
+   "tp": 126
+  },
+  {
+   "familia": "HE/PC",
+   "modelo": "PC220F",
+   "peca": "MESA CENTRAL",
+   "maquina": "UMC01",
+   "tp": 126
+  },
+  {
+   "familia": "HE/PC",
+   "modelo": "PC240",
+   "peca": "MESA CENTRAL",
+   "maquina": "HMC-16",
+   "tp": 126
+  },
+  {
+   "familia": "HE/PC",
+   "modelo": "PC360",
+   "peca": "MESA CENTRAL",
+   "maquina": "HMC-16",
+   "tp": 189.6
+  },
+  {
+   "familia": "HE/PC",
+   "modelo": "PC500",
+   "peca": "MESA CENTRAL",
+   "maquina": "HMC-16",
+   "tp": 350
+  },
+  {
+   "familia": "HE/PC",
+   "modelo": "PC210",
+   "peca": "MESA CENTRAL",
+   "maquina": "UMC01",
+   "tp": 126
+  },
+  {
+   "familia": "HE/PC",
+   "modelo": "PC160",
+   "peca": "MESA CENTRAL",
+   "maquina": "UMC01",
+   "tp": 106
+  },
+  {
+   "familia": "HE/PC",
+   "modelo": "PC210F",
+   "peca": "PONTEIRA",
+   "maquina": "UMC01",
+   "tp": 45
+  },
+  {
+   "familia": "HE/PC",
+   "modelo": "PC220F",
+   "peca": "PONTEIRA",
+   "maquina": "UMC01",
+   "tp": 45
+  },
+  {
+   "familia": "CT",
+   "modelo": "D51-22",
+   "peca": "VIGA LH/RH",
+   "maquina": "UMC02",
+   "tp": 131
+  },
+  {
+   "familia": "CT",
+   "modelo": "D51-24",
+   "peca": "VIGA LH/RH",
+   "maquina": "UMC02",
+   "tp": 142
+  },
+  {
+   "familia": "CT",
+   "modelo": "D61-23",
+   "peca": "VIGA LH/RH",
+   "maquina": "UMC02",
+   "tp": 167
+  },
+  {
+   "familia": "CT",
+   "modelo": "D61-24",
+   "peca": "VIGA LH/RH",
+   "maquina": "UMC02",
+   "tp": 167
+  },
+  {
+   "familia": "WL/WA",
+   "modelo": "WA200",
+   "peca": "CHASSI TRASEIRO WA'S",
+   "maquina": "HMC-16",
+   "tp": 160
+  },
+  {
+   "familia": "WL/WA",
+   "modelo": "WA150",
+   "peca": "CHASSI DIANTEIRO WA'S",
+   "maquina": "HMC-16",
+   "tp": 160
+  },
+  {
+   "familia": "WL/WA",
+   "modelo": "WA320",
+   "peca": "CHASSI DIANTEIRO WA'S",
+   "maquina": "HMC-16",
+   "tp": 197.4
+  },
+  {
+   "familia": "WL/WA",
+   "modelo": "WA380",
+   "peca": "CHASSI DIANTEIRO WA'S",
+   "maquina": "HMC-16",
+   "tp": 197.26
+  },
+  {
+   "familia": "WL/WA",
+   "modelo": "WA200",
+   "peca": "LÂMINA GD",
+   "maquina": "UMC02",
+   "tp": 47
+  },
+  {
+   "familia": "WL/WA",
+   "modelo": "WA150",
+   "peca": "BOOM WA",
+   "maquina": "UMC02",
+   "tp": 48
+  },
+  {
+   "familia": "WL/WA",
+   "modelo": "WA320",
+   "peca": "BOOM WA",
+   "maquina": "UMC02",
+   "tp": 53
+  },
+  {
+   "familia": "WL/WA",
+   "modelo": "WA380",
+   "peca": "BOOM WA",
+   "maquina": "UMC02",
+   "tp": 53
+  },
+  {
+   "familia": "HE/PC",
+   "modelo": "PC130",
+   "peca": "BOOM WA",
+   "maquina": "NCBZ",
+   "tp": 47.851
+  },
+  {
+   "familia": "HE/PC",
+   "modelo": "PC200",
+   "peca": "LANÇA PC",
+   "maquina": "NCBZ",
+   "tp": 47
+  },
+  {
+   "familia": "HE/PC",
+   "modelo": "PC210LC",
+   "peca": "LANÇA PC",
+   "maquina": "NCBZ",
+   "tp": 47
+  },
+  {
+   "familia": "HE/PC",
+   "modelo": "PC210F",
+   "peca": "LANÇA PC",
+   "maquina": "NCBZ",
+   "tp": 47
+  },
+  {
+   "familia": "HE/PC",
+   "modelo": "PC220F",
+   "peca": "LANÇA PC",
+   "maquina": "NCBZ",
+   "tp": 47
+  },
+  {
+   "familia": "HE/PC",
+   "modelo": "PC240",
+   "peca": "LANÇA PC",
+   "maquina": "NCBZ",
+   "tp": 53
+  },
+  {
+   "familia": "HE/PC",
+   "modelo": "PC360",
+   "peca": "LANÇA PC",
+   "maquina": "NCBZ",
+   "tp": 54.6
+  },
+  {
+   "familia": "HE/PC",
+   "modelo": "PC500",
+   "peca": "LANÇA PC",
+   "maquina": "NCBZ",
+   "tp": 55
+  },
+  {
+   "familia": "HE/PC",
+   "modelo": "PC210",
+   "peca": "LANÇA PC",
+   "maquina": "NCBZ",
+   "tp": 47
+  },
+  {
+   "familia": "HE/PC",
+   "modelo": "PC160",
+   "peca": "LANÇA PC",
+   "maquina": "NCBZ",
+   "tp": 40
+  }
+ ],
+ "sem_tempo": 377,
+ "orig": {
+  "mes": "out/26",
+  "maq": [
+   "UMC01",
+   "UMC02",
+   "NCBZ",
+   "HMC-16"
+  ],
+  "carga_out26": [
+   308.5599,
+   268.86,
+   95.0748,
+   245.1162
+  ],
+  "cap_1turno": 146.4724,
+  "cap_2turnos": 281.2382
+ }
+}
