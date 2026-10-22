@@ -86,5 +86,15 @@ export function calcular(e: Estado, s: number) {
     const k = `${l.modelo}|${l.peca}`, u = util(l);
     if (u > (fluxos.get(k)?.util ?? -1)) fluxos.set(k, { chave: `${l.modelo} / ${l.peca}`, recurso: l.celula || l.maquina, util: u });
   }
-  return { celulas, maquinas, turnosMaq, tot, gargalos: Array.from(fluxos.values()).sort((a, b) => b.util - a.util) };
+  // horas-máquina por modelo (todas as linhas com máquina)
+  const mm = new Map<string, { nome: string; familia: string; horas: number }>();
+  for (const l of e.linhas) {
+    if (!l.maquina) continue;
+    const t = c.base === "Real" && l.tr > 0 ? l.tr : l.tp;
+    const hh = (l.dem * (t * c.fTempo + (l.lote > 0 ? l.setup / l.lote : 0)) * c.fDem) / 60;
+    const x = mm.get(l.modelo) ?? { nome: l.modelo, familia: l.familia, horas: 0 };
+    x.horas += hh; mm.set(l.modelo, x);
+  }
+  const modelos = Array.from(mm.values()).sort((a, b) => b.horas - a.horas);
+  return { celulas, maquinas, turnosMaq, tot, modelos, gargalos: Array.from(fluxos.values()).sort((a, b) => b.util - a.util) };
 }

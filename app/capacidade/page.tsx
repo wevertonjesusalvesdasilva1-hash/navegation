@@ -89,6 +89,15 @@ export default function Capacidade() {
   const set = (f: (x: App) => void) => setA((o) => { const n = structuredClone(o); f(n); return n; });
   const maqs = r.maquinas.filter((m) => a.fam === 'TODAS' || efetivo.linhas.some((l) => l.maquina === m.nome && l.familia === a.fam));
   const t = r.maquinas.reduce((x, m) => ({ cap: x.cap + m.efetiva, car: x.car + m.carga, def: x.def + m.deficit, oc: x.oc + m.ocioso }), { cap: 0, car: 0, def: 0, oc: 0 });
+  const nomi = r.maquinas.reduce((x, m) => x + m.nominal, 0);
+  const sogy = e.sogyodo === 'Nominal' ? (nomi ? t.car / nomi : 0) : t.cap ? t.car / t.cap : 0;
+  const turnosOk = Math.max(0, ...r.turnosMaq.map((u) => (u[0] < efetivo.vermelho ? 1 : u[1] < efetivo.vermelho ? 2 : u[2] < efetivo.vermelho ? 3 : 4)));
+  const serie = useMemo(() => a.meses.map((_, m) => {
+    const dem = (nm: string) => a.plano.find((p) => p.modelo === nm)?.qtd[m] ?? 0;
+    const es = { ...a.est, diasMes: a.dias[m], linhas: a.est.linhas.map((l) => ({ ...l, dem: dem(l.modelo) })) };
+    const x = calcular(es, a.sel).maquinas;
+    return { cap: x.reduce((z, q) => z + q.efetiva, 0), car: x.reduce((z, q) => z + q.carga, 0) };
+  }), [a]);
   const abas: [string, string, string][] = [['dash', 'Dashboard', IC.load], ['sim', 'Simulador', IC.sliders], ['cen', 'Cenários e Turnos', IC.moon], ['plano', 'Plano', IC.cal], ['tempos', 'Tempos', IC.timer], ['comp', 'Comparativo', IC.split]];
 
   const exportar = () => { const b = new Blob([JSON.stringify(a)], { type: 'application/json' }); const u = document.createElement('a'); u.href = URL.createObjectURL(b); u.download = 'capacidade.json'; u.click(); };
@@ -125,9 +134,17 @@ export default function Capacidade() {
       <div key={aba} className="animate-fade-up space-y-5">
 
       {aba === 'dash' && <>
-        <div className="grid grid-cols-2 gap-3 md:grid-cols-5 [&>*]:min-w-0">
-          <Card t="Capacidade (h)" n={t.cap} ic={IC.gauge} /><Card t="Carga (h)" n={t.car} ic={IC.load} />
-          <Card t="Utilização" n={t.cap ? t.car / t.cap : 0} f={pc} ic={IC.cpu} /><Card t="Excedente / HE (h)" n={t.def} ic={IC.alert} /><Card t="Ociosas (h)" n={t.oc} ic={IC.clock} />
+        <div className="grid grid-cols-2 gap-3 md:grid-cols-4 [&>*]:min-w-0">
+          <Card t="Capacidade (h)" n={t.cap} ic={IC.gauge} s="horas-máquina no mês" /><Card t="Carga planejada (h)" n={t.car} ic={IC.load} s={`${h(r.tot.demanda)} máquinas no plano`} />
+          <Card t="Utilização geral" n={t.cap ? t.car / t.cap : 0} f={pc} ic={IC.cpu} s={t.cap && t.car / t.cap >= e.vermelho ? 'acima da capacidade' : 'dentro da capacidade'} /><Card t="Sogyodo" n={sogy} f={pc} ic={IC.gauge} s={`base ${e.sogyodo.toLowerCase()}`} />
+          <Card t="Excedente / HE necessárias (h)" n={t.def} ic={IC.alert} s="soma das máquinas acima de 100%" /><Card t="Horas ociosas (h)" n={t.oc} ic={IC.clock} s="folga nas máquinas abaixo de 100%" />
+          <Card t="Máquinas insuficientes" n={r.tot.maqInsuf} f={(x) => `${Math.round(x)} de ${r.maquinas.length}`} ic={IC.alert} s={`${r.maquinas.filter((m) => m.status === 'ATENÇÃO').length} em atenção`} /><Card t="Turnos para fechar o plano" n={turnosOk} f={(x) => (x > 3.5 ? '> 3' : String(Math.round(x)))} ic={IC.moon} s="pior máquina, sem HE" />
+        </div>
+        <div className="grid gap-4 lg:grid-cols-2 [&>*]:min-w-0">
+          <ChartMaq itens={maqs} e={efetivo} />
+          <ChartMeses dados={serie} sel={a.mes} meses={a.meses} />
+          <ChartCenarios res={res} nomes={e.cenarios.map((c) => c.nome)} sel={a.sel} e={efetivo} />
+          <ChartModelos itens={r.modelos.filter((m) => a.fam === 'TODAS' || m.familia === a.fam)} />
         </div>
         <MaqCards titulo="Máquinas de usinagem" itens={maqs} e={efetivo} />
         <section className="overflow-x-auto rounded-3xl border border-white bg-white p-4 shadow-lg shadow-indigo-100/60">
@@ -255,5 +272,91 @@ function MaqCards({ titulo, itens, e }: { titulo: string; itens: Res[]; e: Estad
         ))}
       </div>
     </section>
+  );
+}
+
+const Painel = ({ t, sub, children }: { t: string; sub?: string; children: React.ReactNode }) => (
+  <section className="rounded-3xl border border-white bg-white p-4 shadow-lg shadow-indigo-100/60"><h2 className="font-semibold text-slate-700">{t}</h2>{sub && <p className="text-xs text-slate-400">{sub}</p>}<div className="mt-3">{children}</div></section>
+);
+const Leg = ({ c, t }: { c: string; t: string }) => <span className="inline-flex items-center gap-1 text-xs text-slate-500"><i className={`h-2 w-2 rounded-full ${c}`} />{t}</span>;
+
+function ChartMaq({ itens, e }: { itens: Res[]; e: Estado }) {
+  const max = Math.max(1, ...itens.map((m) => Math.max(m.carga, m.efetiva)));
+  return (
+    <Painel t="Carga × capacidade por máquina" sub="horas no mês">
+      <div className="flex h-44 items-end justify-around gap-3">
+        {itens.map((m) => (
+          <div key={m.nome} className="flex h-full flex-1 flex-col items-center justify-end gap-1">
+            <div className="flex h-full w-full items-end justify-center gap-1.5">
+              <div title={`Capacidade ${h(m.efetiva)}h`} className="w-1/3 rounded-t-lg bg-slate-200 transition-all duration-700" style={{ height: `${(m.efetiva / max) * 100}%` }} />
+              <div title={`Carga ${h(m.carga)}h`} className={`w-1/3 rounded-t-lg transition-all duration-700 ${corUtil(m.util, e)}`} style={{ height: `${(m.carga / max) * 100}%` }} />
+            </div>
+            <span className="text-xs font-medium text-slate-600">{m.nome}</span>
+          </div>
+        ))}
+      </div>
+      <div className="mt-2 flex gap-3"><Leg c="bg-slate-200" t="Capacidade" /><Leg c="bg-green-500" t="Carga ok" /><Leg c="bg-yellow-400" t="Atenção" /><Leg c="bg-red-500" t="Insuficiente" /></div>
+    </Painel>
+  );
+}
+
+function ChartMeses({ dados, sel, meses }: { dados: { cap: number; car: number }[]; sel: number; meses: string[] }) {
+  const max = Math.max(1, ...dados.map((d) => Math.max(d.cap, d.car)));
+  return (
+    <Painel t="Demanda × capacidade nos 12 meses" sub="carga total da usinagem vs capacidade do cenário (h)">
+      <div className="relative flex h-44 items-end gap-1">
+        {dados.map((d, i) => (
+          <div key={i} className="group relative flex h-full flex-1 flex-col justify-end" title={`${meses[i]}: carga ${h(d.car)}h · cap ${h(d.cap)}h`}>
+            <div className={`rounded-t-md transition-all duration-700 ${d.car > d.cap ? 'bg-red-400' : 'bg-indigo-400'} ${i === sel ? 'ring-2 ring-blue-600' : 'opacity-80'}`} style={{ height: `${(d.car / max) * 100}%` }} />
+            <div className="absolute inset-x-0 border-t-2 border-slate-800/70 transition-all duration-700" style={{ bottom: `${(d.cap / max) * 100}%` }} />
+          </div>
+        ))}
+      </div>
+      <div className="mt-1 flex gap-1 text-[10px] text-slate-400">{meses.map((m, i) => <span key={i} className={`flex-1 text-center ${i === sel ? 'font-semibold text-blue-700' : ''}`}>{m.slice(0, 3)}</span>)}</div>
+      <div className="mt-2 flex gap-3"><Leg c="bg-indigo-400" t="Carga" /><Leg c="bg-red-400" t="Carga acima da capacidade" /><span className="text-xs text-slate-500">— linha = capacidade</span></div>
+    </Painel>
+  );
+}
+
+function ChartCenarios({ res, nomes, sel, e }: { res: ReturnType<typeof calcular>[]; nomes: string[]; sel: number; e: Estado }) {
+  const nm = res[0].maquinas.map((m) => m.nome);
+  const max = Math.max(1, ...res.flatMap((x) => x.maquinas.map((m) => m.util)));
+  return (
+    <Painel t="Comparação dos cenários" sub="utilização por máquina">
+      <div className="space-y-2">
+        {nm.map((n, mi) => (
+          <div key={n}><div className="mb-0.5 text-xs font-medium text-slate-600">{n}</div>
+            {res.map((x, ci) => { const u = x.maquinas[mi].util; return (
+              <div key={ci} className="flex items-center gap-2"><span className={`w-16 truncate text-[10px] ${ci === sel ? 'font-semibold text-blue-700' : 'text-slate-400'}`}>{nomes[ci]}</span>
+                <div className="h-2 flex-1 rounded-full bg-slate-100"><div className={`h-2 rounded-full transition-all duration-700 ${corUtil(u, e)} ${ci === sel ? '' : 'opacity-60'}`} style={{ width: `${(u / max) * 100}%` }} /></div><span className="w-10 text-right text-[11px]">{pc(u)}</span></div>
+            ); })}
+          </div>
+        ))}
+      </div>
+    </Painel>
+  );
+}
+
+function ChartModelos({ itens }: { itens: { nome: string; familia: string; horas: number }[] }) {
+  const top = itens.slice(0, 7), max = Math.max(1, ...top.map((m) => m.horas)), tot = itens.reduce((a, m) => a + m.horas, 0);
+  const fams = ['HE/PC', 'WL/WA', 'CT', 'MG'].map((f) => ({ f, v: itens.filter((m) => m.familia === f).reduce((a, m) => a + m.horas, 0) }));
+  const cor = ['#6366f1', '#0ea5e9', '#14b8a6', '#f59e0b'];
+  let acc = 0;
+  return (
+    <Painel t="Quem consome mais horas" sub="horas-máquina por modelo e por família">
+      <div className="flex flex-col gap-4 sm:flex-row">
+        <svg viewBox="0 0 42 42" className="h-28 w-28 shrink-0 -rotate-90 self-center">
+          <circle cx="21" cy="21" r="15.9" fill="none" stroke="#f1f5f9" strokeWidth="6" />
+          {fams.map((x, i) => { const p = tot ? (x.v / tot) * 100 : 0; const el = <circle key={x.f} cx="21" cy="21" r="15.9" fill="none" stroke={cor[i]} strokeWidth="6" strokeDasharray={`${p} ${100 - p}`} strokeDashoffset={-acc} style={{ transition: 'all .7s' }} />; acc += p; return el; })}
+        </svg>
+        <div className="flex-1 space-y-1.5">
+          {top.map((m) => (
+            <div key={m.nome} className="flex items-center gap-2"><span className="w-14 text-xs">{m.nome}</span>
+              <div className="h-2 flex-1 rounded-full bg-slate-100"><div className="h-2 rounded-full bg-indigo-500 transition-all duration-700" style={{ width: `${(m.horas / max) * 100}%` }} /></div><span className="w-12 text-right text-[11px] text-slate-500">{h(m.horas)}h</span></div>
+          ))}
+        </div>
+      </div>
+      <div className="mt-3 flex flex-wrap gap-3">{fams.map((x, i) => <span key={x.f} className="inline-flex items-center gap-1 text-xs text-slate-500"><i className="h-2 w-2 rounded-full" style={{ background: cor[i] }} />{x.f} {tot ? pc(x.v / tot) : '0%'}</span>)}</div>
+    </Painel>
   );
 }
