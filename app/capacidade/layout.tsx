@@ -9,10 +9,12 @@ import { AuthBar } from '@/components/AuthBar';
 const NAV: [string, string, string][] = [
   ['/capacidade', 'Dashboard', 'M4 20V10m6 10V4m6 16v-7m4 7H2'],
   ['/capacidade/simulador', 'Simulador', 'M4 6h10m4 0h2M4 12h4m4 0h8M4 18h12m4 0h0M14 4v4m-6 2v4m8 2v4'],
+  ['/capacidade/turno', 'Capacidade por turno', 'M12 7v5l3 2M21 12a9 9 0 11-18 0 9 9 0 0118 0zM12 3v2'],
   ['/capacidade/usinagem', 'Usinagem', 'M9 3v2m6-2v2M9 19v2m6-2v2M3 9h2m-2 6h2m14-6h2m-2 6h2M7 7h10v10H7z'],
   ['/capacidade/celulas', 'Células', 'M4 5h7v7H4zM13 5h7v7h-7zM4 14h7v6H4zM13 14h7v6h-7z'],
-  ['/capacidade/tempos', 'Tempos padrão', 'M10 2h4M12 8v5l3 2M20 13a8 8 0 11-16 0 8 8 0 0116 0z'],
+  ['/capacidade/tempos', 'Tempos de usinagem', 'M10 2h4M12 8v5l3 2M20 13a8 8 0 11-16 0 8 8 0 0116 0z'],
   ['/capacidade/turnos', 'Turnos e pessoas', 'M21 13A9 9 0 1111 3a7 7 0 0010 10z'],
+  ['/capacidade/plano', 'Plano e demanda', 'M8 3v3m8-3v3M4 9h16M5 5h14a1 1 0 011 1v13a1 1 0 01-1 1H5a1 1 0 01-1-1V6a1 1 0 011-1z'],
   ['/capacidade/graficos', 'Gráficos do Excel', 'M3 17l6-6 4 4 8-8M3 21h18'],
   ['/capacidade/dados', 'Importar / Exportar', 'M12 4v11m0 0l-4-4m4 4l4-4M5 20h14'],
 ];
@@ -38,7 +40,7 @@ function Casca({ children }: { children: React.ReactNode }) {
         <main key={p} className="animate-fade-up mx-auto max-w-7xl space-y-4 p-4">{children}</main>
       </div>
       <nav className="fixed inset-x-2 bottom-2 z-40 flex justify-around rounded-2xl bg-slate-900/95 p-1 shadow-2xl backdrop-blur md:hidden">
-        {NAV.slice(0, 6).map(([h, n, d]) => <Link key={h} href={h} className={`flex flex-col items-center gap-0.5 rounded-xl px-2 py-1 text-[10px] ${p === h ? 'bg-blue-600 text-white' : 'text-slate-400'}`}><Ic d={d} />{n.split(' ')[0]}</Link>)}
+        {NAV.filter(([h]) => ['', '/simulador', '/turno', '/tempos', '/usinagem'].map((x) => '/capacidade' + x).includes(h)).map(([h, n, d]) => <Link key={h} href={h} className={`flex flex-col items-center gap-0.5 rounded-xl px-2 py-1 text-[10px] ${p === h ? 'bg-blue-600 text-white' : 'text-slate-400'}`}><Ic d={d} />{({ Dashboard: 'Painel', Simulador: 'Simular', 'Capacidade por turno': 'Turnos', 'Tempos de usinagem': 'Tempos', Usinagem: 'Máquinas' } as Record<string, string>)[n] ?? n}</Link>)}
       </nav>
       <div className={`pointer-events-none fixed bottom-20 left-1/2 z-50 -translate-x-1/2 rounded-full bg-slate-900 px-4 py-2 text-white shadow-xl transition-all duration-300 md:bottom-6 ${toast ? 'translate-y-0 opacity-100' : 'translate-y-4 opacity-0'}`}>✓ {toast}</div>
     </div>

@@ -1,8 +1,11 @@
 export type Turno = { nome: string; ini: string; fim: string; pausa: number };
 export type Cenario = { nome: string; turnos: [boolean, boolean, boolean]; heH: number; heDias: number; efic: number; disp: number; fDem: number; fTempo: number; base: "Padrão" | "Real" };
 export type Celula = { nome: string; familia: string; func: [number, number, number][] }; // func[cenario][turno]
-export type Linha = { familia: string; modelo: string; peca: string; processo: string; celula: string; maquina: string; oper: number; tp: number; tr: number; setup: number; lote: number; dem: number };
-export type Estado = { heRef: number; diasMes: number; diasSem: number; amarelo: number; vermelho: number; sogyodo: "Nominal" | "Efetiva"; turnos: Turno[]; cenarios: Cenario[]; celulas: Celula[]; maquinas: string[]; linhas: Linha[] };
+export type Linha = { familia: string; modelo: string; peca: string; processo: string; celula: string; maquina: string; oper: number; tp: number; tr: number; setup: number; lote: number; dem: number; codigo?: string; obs?: string; ativo?: boolean };
+/** Configuração de uma máquina: turnos em que opera, disponibilidade própria e se está ativa (desativar não apaga histórico). */
+export type MaqCfg = { ativa?: boolean; turnos?: [boolean, boolean, boolean]; disp?: number; obs?: string };
+export type Alocacao = "proporcional" | "sequencial" | "manual";
+export type Estado = { turnosAtual?: Turno[]; maqCfg?: Record<string, MaqCfg>; alocacao?: Alocacao; pesoTurno?: [number, number, number]; heRef: number; diasMes: number; diasSem: number; amarelo: number; vermelho: number; sogyodo: "Nominal" | "Efetiva"; turnos: Turno[]; cenarios: Cenario[]; celulas: Celula[]; maquinas: string[]; linhas: Linha[] };
 export type Status = "SEM CARGA" | "OK" | "ATENÇÃO" | "INSUFICIENTE";
 export type Res = { nome: string; familia: string; func: number; nominal: number; efetiva: number; extraHE: number; carga: number; util: number; saldo: number; ocioso: number; deficit: number; funcAdic: number; sogyodo: number; status: Status; capPc: number };
 
@@ -23,9 +26,15 @@ export const novoEstado = (): Estado => ({
 export const statusDe = (e: Estado, carga: number, cap: number): Status =>
   carga === 0 ? "SEM CARGA" : cap === 0 || carga / cap >= e.vermelho ? "INSUFICIENTE" : carga / cap >= e.amarelo ? "ATENÇÃO" : "OK";
 
+export const ativas = (e: Estado) => e.linhas.filter((l) => l.ativo !== false);
+export const maqAtiva = (e: Estado, m: string) => e.maqCfg?.[m]?.ativa !== false;
+/** Turnos em que a máquina opera no cenário: turno ativo no cenário E permitido para a máquina. */
+export const permitidos = (e: Estado, c: Cenario, m: string): [boolean, boolean, boolean] => { const t = e.maqCfg?.[m]?.turnos; return [0, 1, 2].map((i) => c.turnos[i] && (t ? t[i] : true)) as [boolean, boolean, boolean]; };
+export const dispMaq = (e: Estado, c: Cenario, m: string) => e.maqCfg?.[m]?.disp ?? c.disp;
+
 function cargaRecurso(e: Estado, c: Cenario, filtro: (l: Linha) => boolean, comOper: boolean) {
   let h = 0;
-  for (const l of e.linhas) {
+  for (const l of ativas(e)) {
     if (!filtro(l)) continue;
     const t = c.base === "Real" && l.tr > 0 ? l.tr : l.tp;
     const setup = l.lote > 0 ? l.setup / l.lote : 0;
@@ -50,27 +59,28 @@ export function calcular(e: Estado, s: number) {
     const extraHE = c.heDias * c.heH * func;
     const carga = cargaRecurso(e, c, (l) => l.celula === x.nome, true);
     const util = efetiva > 0 ? carga / efetiva : 0;
-    const dem = e.linhas.filter((l) => l.celula === x.nome).reduce((a, l) => a + l.dem, 0) * c.fDem;
+    const dem = ativas(e).filter((l) => l.celula === x.nome).reduce((a, l) => a + l.dem, 0) * c.fDem;
     return { nome: x.nome, familia: x.familia, func, nominal, efetiva, extraHE, carga, util, saldo: efetiva - carga, ocioso: Math.max(0, efetiva - carga), deficit: Math.max(0, carga - efetiva),
       funcAdic: hFunc > 0 ? Math.max(0, carga - efetiva) / hFunc : 0, sogyodo: e.sogyodo === "Nominal" ? (nominal > 0 ? carga / nominal : 0) : util, status: statusDe(e, carga, efetiva), capPc: carga > 0 ? (dem * efetiva) / carga : 0 };
   });
 
-  const maquinas: Res[] = e.maquinas.filter(Boolean).map((m) => {
-    const nominal = e.diasMes * hAtivas;
-    const efetiva = nominal * ef;
-    const extraHE = c.heDias * c.heH * nTurnos;
+  const maquinas: Res[] = e.maquinas.filter(Boolean).filter((m) => maqAtiva(e, m)).map((m) => {
+    const pm = permitidos(e, c, m), nT = pm.filter(Boolean).length, efM = c.efic * dispMaq(e, c, m);
+    const nominal = e.diasMes * pm.reduce((x, on, i) => x + (on ? hT[i] : 0), 0);
+    const efetiva = nominal * efM;
+    const extraHE = c.heDias * c.heH * nT;
     const carga = cargaRecurso(e, c, (l) => l.maquina === m, false);
     const util = efetiva > 0 ? carga / efetiva : 0;
-    return { nome: m, familia: "", func: nTurnos, nominal, efetiva, extraHE, carga, util, saldo: efetiva - carga, ocioso: Math.max(0, efetiva - carga), deficit: Math.max(0, carga - efetiva),
+    return { nome: m, familia: "", func: nT, nominal, efetiva, extraHE, carga, util, saldo: efetiva - carga, ocioso: Math.max(0, efetiva - carga), deficit: Math.max(0, carga - efetiva),
       funcAdic: 0, sogyodo: e.sogyodo === "Nominal" ? (nominal > 0 ? carga / nominal : 0) : util, status: statusDe(e, carga, efetiva), capPc: 0 };
   });
 
   // utilização da máquina com 1, 2 e 3 turnos (mesma eficiência/disponibilidade do cenário)
-  const turnosMaq = maquinas.map((m) => [1, 2, 3].map((n) => { const cap = e.diasMes * hT.slice(0, n).reduce((a, b) => a + b, 0) * ef; return cap > 0 ? m.carga / cap : 0; }));
+  const turnosMaq = maquinas.map((m) => [1, 2, 3].map((n) => { const cap = e.diasMes * hT.slice(0, n).reduce((a, b) => a + b, 0) * c.efic * dispMaq(e, c, m.nome); return cap > 0 ? m.carga / cap : 0; }));
 
   const soma = (k: keyof Res, l: Res[]) => l.reduce((a, r) => a + (r[k] as number), 0);
   const cap = soma("efetiva", celulas), carga = soma("carga", celulas), nom = soma("nominal", celulas);
-  const dem = e.linhas.reduce((a, l) => a + l.dem, 0) * c.fDem;
+  const dem = ativas(e).reduce((a, l) => a + l.dem, 0) * c.fDem;
   const tot = {
     cap, carga, util: cap > 0 ? carga / cap : 0, excedente: soma("deficit", celulas), ocioso: soma("ocioso", celulas), he: soma("deficit", celulas),
     funcDisp: soma("func", celulas), funcNec: soma("func", celulas) + soma("funcAdic", celulas), sogyodo: e.sogyodo === "Nominal" ? (nom > 0 ? carga / nom : 0) : cap > 0 ? carga / cap : 0,
@@ -81,14 +91,14 @@ export function calcular(e: Estado, s: number) {
   // gargalo de cada fluxo (modelo+peça): recurso de maior utilização
   const util = (l: Linha) => Math.max(celulas.find((x) => x.nome === l.celula)?.util ?? 0, maquinas.find((x) => x.nome === l.maquina)?.util ?? 0);
   const fluxos = new Map<string, { chave: string; recurso: string; util: number }>();
-  for (const l of e.linhas) {
+  for (const l of ativas(e)) {
     if (!l.peca) continue;
     const k = `${l.modelo}|${l.peca}`, u = util(l);
     if (u > (fluxos.get(k)?.util ?? -1)) fluxos.set(k, { chave: `${l.modelo} / ${l.peca}`, recurso: l.celula || l.maquina, util: u });
   }
   // horas-máquina por modelo (todas as linhas com máquina)
   const mm = new Map<string, { nome: string; familia: string; horas: number }>();
-  for (const l of e.linhas) {
+  for (const l of ativas(e).filter((x) => !x.maquina || maqAtiva(e, x.maquina))) {
     if (!l.maquina) continue;
     const t = c.base === "Real" && l.tr > 0 ? l.tr : l.tp;
     const hh = (l.dem * (t * c.fTempo + (l.lote > 0 ? l.setup / l.lote : 0)) * c.fDem) / 60;
@@ -96,7 +106,7 @@ export function calcular(e: Estado, s: number) {
     x.horas += hh; mm.set(l.modelo, x);
   }
   const pilha: Record<string, Record<string, number>> = {};
-  for (const l of e.linhas) {
+  for (const l of ativas(e).filter((x) => !x.maquina || maqAtiva(e, x.maquina))) {
     if (!l.maquina) continue;
     const t = c.base === "Real" && l.tr > 0 ? l.tr : l.tp;
     pilha[l.maquina] ??= {};
@@ -108,5 +118,8 @@ export function calcular(e: Estado, s: number) {
   return { celulas, maquinas, turnosMaq, tot, modelos, pilha, capLinhas, gargalos: Array.from(fluxos.values()).sort((a, b) => b.util - a.util) };
 }
 
-export const semTempo = (l: Linha) => !(l.tp > 0);
+export const semTempo = (l: Linha) => l.ativo !== false && !(l.tp > 0);
 export const FAMILIAS = ["HE/PC", "WL/WA", "CT", "MG"];
+
+/** Carga mensal (h) de uma linha no cenário c. */
+export const cargaLinha = (l: Linha, c: Cenario) => { const t = c.base === "Real" && l.tr > 0 ? l.tr : l.tp; return (l.dem * (t * c.fTempo + (l.lote > 0 ? l.setup / l.lote : 0)) * c.fDem) / 60; };

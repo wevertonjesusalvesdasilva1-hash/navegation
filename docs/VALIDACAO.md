@@ -1,6 +1,6 @@
 # Validação
 
-## Cálculos (testes automatizados: `npm test`, 17 testes)
+## Cálculos (testes automatizados: `npm test`, 28 testes)
 
 Referência: Excel original, mês out/26 (`4.Load Time` linhas 635–641).
 
@@ -29,3 +29,12 @@ Ver `INVENTARIO_GRAFICOS.md`. G1 coincide com o Excel (mesmas séries, cores, ei
 - 377 combinações peça×modelo sem tempo: a carga é um piso.
 - Supabase (login, papéis, dados compartilhados): código e SQL prontos (`supabase/schema.sql`), **não testados** contra um projeto real. Sem as variáveis, o app roda em modo local.
 - Componentes de UI no estilo shadcn/ui escritos à mão (sem Radix/CLI).
+
+## Capacidade por turno e tempos de usinagem (testes)
+- Soma das capacidades por turno = capacidade total da máquina; turno inativo = 0 e a carga se divide entre os turnos que operam.
+- Distribuição sequencial enche o turno A antes do B; proporcional mantém a mesma utilização em todos.
+- Máquina que não opera em um turno não ganha capacidade nele; **mais funcionários não aumentam a capacidade da máquina** (testado).
+- Nova escala com turno B mais curto reduz só a capacidade do turno B (−1/7,95 = −12,6%).
+- Transferência de peça: carga sai da origem e entra na destino com o tempo da outra máquina; simulação não altera o estado oficial; transferir de volta restaura a carga original; máquina desativada sai dos cálculos.
+
+Premissa: a demanda é mensal; como ela é distribuída entre os turnos é uma regra editável (proporcional, sequencial ou manual) — **confirmar com a produção**.

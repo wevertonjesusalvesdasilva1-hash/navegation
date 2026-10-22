@@ -81,3 +81,65 @@ describe('dados e importação', () => {
     expect(m.app.est.linhas[0].tp).toBe(99);
   });
 });
+
+import { alternativas, comparar, porTurno, transferir } from '@/lib/turnos';
+
+describe('capacidade por turno', () => {
+  const pt = porTurno(e, 1); // cenário Ajustado: turnos A e B ativos
+  it('soma das capacidades por turno = capacidade total da máquina', () => {
+    pt.maquinas.forEach((m, i) => expect(m.total.cap).toBeCloseTo(r1.maquinas[i].efetiva, 6));
+  });
+  it('turno C inativo não tem capacidade e a carga se divide entre A e B', () => {
+    expect(pt.turnos[2].maq.cap).toBe(0);
+    expect(pt.maquinas[0].t[0].carga + pt.maquinas[0].t[1].carga).toBeCloseTo(r1.maquinas[0].carga, 6);
+  });
+  it('alocação sequencial enche o turno A antes do B', () => {
+    const seq = porTurno({ ...e, alocacao: 'sequencial' }, 1);
+    expect(seq.maquinas[0].t[0].util).toBeGreaterThanOrEqual(1 - 1e-9);
+    expect(seq.maquinas[2].t[1].carga).toBeCloseTo(0, 6); // NCBZ cabe no turno A
+  });
+  it('máquina que não opera no turno B tem capacidade 0 nele e menor capacidade total', () => {
+    const x = structuredClone(e); x.maqCfg = { UMC01: { turnos: [true, false, true] } };
+    const p = porTurno(x, 1);
+    expect(p.maquinas[0].t[1].cap).toBe(0);
+    expect(p.maquinas[0].total.cap).toBeCloseTo(r0.maquinas[0].efetiva, 6); // só o turno A opera
+    expect(calcular(x, 1).maquinas[0].efetiva).toBeCloseTo(p.maquinas[0].total.cap, 6);
+  });
+  it('mais funcionários não aumentam a capacidade de máquina', () => {
+    const x = structuredClone(e); x.celulas = [{ nome: 'C1', familia: 'CT', func: [[1, 0, 0], [1, 0, 0], [1, 0, 0]] }]; const a0 = calcular(x, 0).maquinas[0].efetiva;
+    x.celulas[0].func[0] = [50, 0, 0]; expect(calcular(x, 0).maquinas[0].efetiva).toBe(a0);
+  });
+  it('nova escala mais curta no turno B reduz só a capacidade do turno B', () => {
+    const x = structuredClone(e); x.turnosAtual = structuredClone(x.turnos); x.turnos[1] = { ...x.turnos[1], fim: '04:37' };
+    const c = comparar(x, 1, 1);
+    expect(c.perdas[1].maq.h).toBeLessThan(0); expect(c.perdas[0].maq.h).toBeCloseTo(0, 9); expect(c.perdas[1].maq.pct).toBeCloseTo(-1 / 7.95, 3);
+  });
+  it('período: diário × dias = mensal; semanal = diário × 5', () => {
+    const cap = pt.total.maq.cap; expect(cap / e.diasMes * e.diasMes).toBeCloseTo(cap, 6);
+  });
+});
+
+describe('transferência de peça entre máquinas', () => {
+  const idx = e.linhas.findIndex((l) => l.maquina === 'UMC01' && l.tp > 0 && l.dem > 0);
+  const base = calcular(e, 0);
+  it('retira a carga da origem e soma na destino (com tempo da outra máquina)', () => {
+    const o = e.linhas[idx], x = transferir(e, idx, 'NCBZ', o.tp * 2), r = calcular(x, 0);
+    const h = (o.dem * o.tp * 0.9) / 60;
+    expect(r.maquinas[0].carga).toBeCloseTo(base.maquinas[0].carga - h, 6);
+    expect(r.maquinas[2].carga).toBeCloseTo(base.maquinas[2].carga + h * 2, 6);
+  });
+  it('não altera o estado original (simulação) e mantém a linha antiga como alternativa', () => {
+    const x = transferir(e, idx, 'UMC02');
+    expect(e.linhas[idx].ativo).not.toBe(false);
+    expect(x.linhas[idx].ativo).toBe(false);
+    expect(alternativas(x, x.linhas.length - 1).some((z) => z.l.maquina === 'UMC01')).toBe(true);
+  });
+  it('transferir de volta restaura exatamente a carga original', () => {
+    const x = transferir(e, idx, 'UMC02', e.linhas[idx].tp), y = transferir(x, x.linhas.length - 1, 'UMC01', e.linhas[idx].tp);
+    calcular(y, 0).maquinas.forEach((m, i) => expect(m.carga).toBeCloseTo(base.maquinas[i].carga, 9));
+  });
+  it('máquina desativada sai da capacidade e da carga', () => {
+    const x = structuredClone(e); x.maqCfg = { NCBZ: { ativa: false } };
+    expect(calcular(x, 0).maquinas.map((m) => m.nome)).toEqual(['UMC01', 'UMC02', 'HMC-16']);
+  });
+});
