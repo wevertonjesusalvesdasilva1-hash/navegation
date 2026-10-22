@@ -726,5 +726,2646 @@
   ],
   "cap_1turno": 146.4724,
   "cap_2turnos": 281.2382
- }
+ },
+ "linhas_sem_tempo": [
+  {
+   "familia": "CT",
+   "modelo": "D51-22",
+   "peca": "U-FRAME",
+   "maquina": "",
+   "tp": 0
+  },
+  {
+   "familia": "CT",
+   "modelo": "D51-24",
+   "peca": "U-FRAME",
+   "maquina": "",
+   "tp": 0
+  },
+  {
+   "familia": "CT",
+   "modelo": "D61-23",
+   "peca": "U-FRAME",
+   "maquina": "",
+   "tp": 0
+  },
+  {
+   "familia": "CT",
+   "modelo": "D61-24",
+   "peca": "U-FRAME",
+   "maquina": "",
+   "tp": 0
+  },
+  {
+   "familia": "CT",
+   "modelo": "D71-24",
+   "peca": "U-FRAME",
+   "maquina": "",
+   "tp": 0
+  },
+  {
+   "familia": "HE/PC",
+   "modelo": "PC360",
+   "peca": "GARFO",
+   "maquina": "",
+   "tp": 0
+  },
+  {
+   "familia": "HE/PC",
+   "modelo": "PC360",
+   "peca": "CANHÃO",
+   "maquina": "",
+   "tp": 0
+  },
+  {
+   "familia": "CT",
+   "modelo": "D61-23",
+   "peca": "MANCAL",
+   "maquina": "",
+   "tp": 0
+  },
+  {
+   "familia": "CT",
+   "modelo": "D61-24",
+   "peca": "MANCAL",
+   "maquina": "",
+   "tp": 0
+  },
+  {
+   "familia": "CT",
+   "modelo": "D51-22",
+   "peca": "CAPA GUIA",
+   "maquina": "",
+   "tp": 0
+  },
+  {
+   "familia": "CT",
+   "modelo": "D51-24",
+   "peca": "CAPA GUIA",
+   "maquina": "",
+   "tp": 0
+  },
+  {
+   "familia": "CT",
+   "modelo": "D61-23",
+   "peca": "CAPA GUIA",
+   "maquina": "",
+   "tp": 0
+  },
+  {
+   "familia": "CT",
+   "modelo": "D61-24",
+   "peca": "CAPA GUIA",
+   "maquina": "",
+   "tp": 0
+  },
+  {
+   "familia": "CT",
+   "modelo": "D61-23",
+   "peca": "HASTE",
+   "maquina": "",
+   "tp": 0
+  },
+  {
+   "familia": "CT",
+   "modelo": "D61-24",
+   "peca": "HASTE",
+   "maquina": "",
+   "tp": 0
+  },
+  {
+   "familia": "MG",
+   "modelo": "GD655-5",
+   "peca": "CANGALHA",
+   "maquina": "",
+   "tp": 0
+  },
+  {
+   "familia": "MG",
+   "modelo": "GD535-5",
+   "peca": "CANGALHA",
+   "maquina": "",
+   "tp": 0
+  },
+  {
+   "familia": "CT",
+   "modelo": "D71-24",
+   "peca": "S-CASE",
+   "maquina": "",
+   "tp": 0
+  },
+  {
+   "familia": "CT",
+   "modelo": "D51-22",
+   "peca": "BRACKET",
+   "maquina": "",
+   "tp": 0
+  },
+  {
+   "familia": "CT",
+   "modelo": "D51-24",
+   "peca": "BRACKET",
+   "maquina": "",
+   "tp": 0
+  },
+  {
+   "familia": "CT",
+   "modelo": "D61-23",
+   "peca": "BRACKET",
+   "maquina": "",
+   "tp": 0
+  },
+  {
+   "familia": "CT",
+   "modelo": "D61-24",
+   "peca": "BRACKET",
+   "maquina": "",
+   "tp": 0
+  },
+  {
+   "familia": "CT",
+   "modelo": "D71-24",
+   "peca": "BRACKET",
+   "maquina": "",
+   "tp": 0
+  },
+  {
+   "familia": "WL/WA",
+   "modelo": "WA200",
+   "peca": "FRAME",
+   "maquina": "",
+   "tp": 0
+  },
+  {
+   "familia": "WL/WA",
+   "modelo": "WA150",
+   "peca": "FRAME",
+   "maquina": "",
+   "tp": 0
+  },
+  {
+   "familia": "WL/WA",
+   "modelo": "WA320",
+   "peca": "FRAME",
+   "maquina": "",
+   "tp": 0
+  },
+  {
+   "familia": "WL/WA",
+   "modelo": "WA380",
+   "peca": "FRAME",
+   "maquina": "",
+   "tp": 0
+  },
+  {
+   "familia": "CT",
+   "modelo": "D51-22",
+   "peca": "HINGE CENTER",
+   "maquina": "",
+   "tp": 0
+  },
+  {
+   "familia": "CT",
+   "modelo": "D51-24",
+   "peca": "HINGE CENTER",
+   "maquina": "",
+   "tp": 0
+  },
+  {
+   "familia": "CT",
+   "modelo": "D61-23",
+   "peca": "HINGE CENTER",
+   "maquina": "",
+   "tp": 0
+  },
+  {
+   "familia": "CT",
+   "modelo": "D61-24",
+   "peca": "HINGE CENTER",
+   "maquina": "",
+   "tp": 0
+  },
+  {
+   "familia": "CT",
+   "modelo": "D71-24",
+   "peca": "HINGE CENTER",
+   "maquina": "",
+   "tp": 0
+  },
+  {
+   "familia": "HE/PC",
+   "modelo": "PC130",
+   "peca": "ARANHA",
+   "maquina": "",
+   "tp": 0
+  },
+  {
+   "familia": "HE/PC",
+   "modelo": "PC200",
+   "peca": "ARANHA",
+   "maquina": "",
+   "tp": 0
+  },
+  {
+   "familia": "HE/PC",
+   "modelo": "PC210LC",
+   "peca": "ARANHA",
+   "maquina": "",
+   "tp": 0
+  },
+  {
+   "familia": "HE/PC",
+   "modelo": "PC210F",
+   "peca": "ARANHA",
+   "maquina": "",
+   "tp": 0
+  },
+  {
+   "familia": "HE/PC",
+   "modelo": "PC220F",
+   "peca": "ARANHA",
+   "maquina": "",
+   "tp": 0
+  },
+  {
+   "familia": "HE/PC",
+   "modelo": "PC240",
+   "peca": "ARANHA",
+   "maquina": "",
+   "tp": 0
+  },
+  {
+   "familia": "HE/PC",
+   "modelo": "PC360",
+   "peca": "ARANHA",
+   "maquina": "",
+   "tp": 0
+  },
+  {
+   "familia": "HE/PC",
+   "modelo": "PC500",
+   "peca": "ARANHA",
+   "maquina": "",
+   "tp": 0
+  },
+  {
+   "familia": "HE/PC",
+   "modelo": "PC210",
+   "peca": "ARANHA",
+   "maquina": "",
+   "tp": 0
+  },
+  {
+   "familia": "HE/PC",
+   "modelo": "PC160",
+   "peca": "ARANHA",
+   "maquina": "",
+   "tp": 0
+  },
+  {
+   "familia": "HE/PC",
+   "modelo": "PC130",
+   "peca": "CABEÇA DA VIGA",
+   "maquina": "",
+   "tp": 0
+  },
+  {
+   "familia": "HE/PC",
+   "modelo": "PC200",
+   "peca": "CABEÇA DA VIGA",
+   "maquina": "",
+   "tp": 0
+  },
+  {
+   "familia": "HE/PC",
+   "modelo": "PC210LC",
+   "peca": "CABEÇA DA VIGA",
+   "maquina": "",
+   "tp": 0
+  },
+  {
+   "familia": "HE/PC",
+   "modelo": "PC210F",
+   "peca": "CABEÇA DA VIGA",
+   "maquina": "",
+   "tp": 0
+  },
+  {
+   "familia": "HE/PC",
+   "modelo": "PC220F",
+   "peca": "CABEÇA DA VIGA",
+   "maquina": "",
+   "tp": 0
+  },
+  {
+   "familia": "HE/PC",
+   "modelo": "PC240",
+   "peca": "CABEÇA DA VIGA",
+   "maquina": "",
+   "tp": 0
+  },
+  {
+   "familia": "HE/PC",
+   "modelo": "PC360",
+   "peca": "CABEÇA DA VIGA",
+   "maquina": "",
+   "tp": 0
+  },
+  {
+   "familia": "HE/PC",
+   "modelo": "PC500",
+   "peca": "CABEÇA DA VIGA",
+   "maquina": "",
+   "tp": 0
+  },
+  {
+   "familia": "HE/PC",
+   "modelo": "PC210",
+   "peca": "CABEÇA DA VIGA",
+   "maquina": "",
+   "tp": 0
+  },
+  {
+   "familia": "HE/PC",
+   "modelo": "PC160",
+   "peca": "CABEÇA DA VIGA",
+   "maquina": "",
+   "tp": 0
+  },
+  {
+   "familia": "HE/PC",
+   "modelo": "PC130",
+   "peca": "VIGA LH/RH",
+   "maquina": "",
+   "tp": 0
+  },
+  {
+   "familia": "HE/PC",
+   "modelo": "PC200",
+   "peca": "VIGA LH/RH",
+   "maquina": "",
+   "tp": 0
+  },
+  {
+   "familia": "HE/PC",
+   "modelo": "PC210LC",
+   "peca": "VIGA LH/RH",
+   "maquina": "",
+   "tp": 0
+  },
+  {
+   "familia": "HE/PC",
+   "modelo": "PC210F",
+   "peca": "VIGA LH/RH",
+   "maquina": "",
+   "tp": 0
+  },
+  {
+   "familia": "HE/PC",
+   "modelo": "PC220F",
+   "peca": "VIGA LH/RH",
+   "maquina": "",
+   "tp": 0
+  },
+  {
+   "familia": "HE/PC",
+   "modelo": "PC240",
+   "peca": "VIGA LH/RH",
+   "maquina": "",
+   "tp": 0
+  },
+  {
+   "familia": "HE/PC",
+   "modelo": "PC360",
+   "peca": "VIGA LH/RH",
+   "maquina": "",
+   "tp": 0
+  },
+  {
+   "familia": "HE/PC",
+   "modelo": "PC500",
+   "peca": "VIGA LH/RH",
+   "maquina": "",
+   "tp": 0
+  },
+  {
+   "familia": "HE/PC",
+   "modelo": "PC210",
+   "peca": "VIGA LH/RH",
+   "maquina": "",
+   "tp": 0
+  },
+  {
+   "familia": "HE/PC",
+   "modelo": "PC160",
+   "peca": "VIGA LH/RH",
+   "maquina": "",
+   "tp": 0
+  },
+  {
+   "familia": "HE/PC",
+   "modelo": "PC130",
+   "peca": "CHASSI",
+   "maquina": "",
+   "tp": 0
+  },
+  {
+   "familia": "HE/PC",
+   "modelo": "PC200",
+   "peca": "CHASSI",
+   "maquina": "",
+   "tp": 0
+  },
+  {
+   "familia": "HE/PC",
+   "modelo": "PC210LC",
+   "peca": "CHASSI",
+   "maquina": "",
+   "tp": 0
+  },
+  {
+   "familia": "HE/PC",
+   "modelo": "PC210F",
+   "peca": "CHASSI",
+   "maquina": "",
+   "tp": 0
+  },
+  {
+   "familia": "HE/PC",
+   "modelo": "PC220F",
+   "peca": "CHASSI",
+   "maquina": "",
+   "tp": 0
+  },
+  {
+   "familia": "HE/PC",
+   "modelo": "PC240",
+   "peca": "CHASSI",
+   "maquina": "",
+   "tp": 0
+  },
+  {
+   "familia": "HE/PC",
+   "modelo": "PC360",
+   "peca": "CHASSI",
+   "maquina": "",
+   "tp": 0
+  },
+  {
+   "familia": "HE/PC",
+   "modelo": "PC500",
+   "peca": "CHASSI",
+   "maquina": "",
+   "tp": 0
+  },
+  {
+   "familia": "HE/PC",
+   "modelo": "PC210",
+   "peca": "CHASSI",
+   "maquina": "",
+   "tp": 0
+  },
+  {
+   "familia": "HE/PC",
+   "modelo": "PC160",
+   "peca": "CHASSI",
+   "maquina": "",
+   "tp": 0
+  },
+  {
+   "familia": "HE/PC",
+   "modelo": "PC130",
+   "peca": "MESA FINAL",
+   "maquina": "",
+   "tp": 0
+  },
+  {
+   "familia": "HE/PC",
+   "modelo": "PC200",
+   "peca": "MESA FINAL",
+   "maquina": "",
+   "tp": 0
+  },
+  {
+   "familia": "HE/PC",
+   "modelo": "PC210LC",
+   "peca": "MESA FINAL",
+   "maquina": "",
+   "tp": 0
+  },
+  {
+   "familia": "HE/PC",
+   "modelo": "PC210F",
+   "peca": "MESA FINAL",
+   "maquina": "",
+   "tp": 0
+  },
+  {
+   "familia": "HE/PC",
+   "modelo": "PC220F",
+   "peca": "MESA FINAL",
+   "maquina": "",
+   "tp": 0
+  },
+  {
+   "familia": "HE/PC",
+   "modelo": "PC240",
+   "peca": "MESA FINAL",
+   "maquina": "",
+   "tp": 0
+  },
+  {
+   "familia": "HE/PC",
+   "modelo": "PC360",
+   "peca": "MESA FINAL",
+   "maquina": "",
+   "tp": 0
+  },
+  {
+   "familia": "HE/PC",
+   "modelo": "PC500",
+   "peca": "MESA FINAL",
+   "maquina": "",
+   "tp": 0
+  },
+  {
+   "familia": "HE/PC",
+   "modelo": "PC210",
+   "peca": "MESA FINAL",
+   "maquina": "",
+   "tp": 0
+  },
+  {
+   "familia": "HE/PC",
+   "modelo": "PC160",
+   "peca": "MESA FINAL",
+   "maquina": "",
+   "tp": 0
+  },
+  {
+   "familia": "HE/PC",
+   "modelo": "PC130LC-10M0",
+   "peca": "PONTEIRA",
+   "maquina": "",
+   "tp": 0
+  },
+  {
+   "familia": "HE/PC",
+   "modelo": "PC200-10M0",
+   "peca": "PONTEIRA",
+   "maquina": "",
+   "tp": 0
+  },
+  {
+   "familia": "HE/PC",
+   "modelo": "PC210LC-10M0",
+   "peca": "PONTEIRA",
+   "maquina": "",
+   "tp": 0
+  },
+  {
+   "familia": "HE/PC",
+   "modelo": "PC240LC-8",
+   "peca": "PONTEIRA",
+   "maquina": "",
+   "tp": 0
+  },
+  {
+   "familia": "HE/PC",
+   "modelo": "PC360LC-8M2",
+   "peca": "PONTEIRA",
+   "maquina": "",
+   "tp": 0
+  },
+  {
+   "familia": "HE/PC",
+   "modelo": "PC210-10M0",
+   "peca": "PONTEIRA",
+   "maquina": "",
+   "tp": 0
+  },
+  {
+   "familia": "HE/PC",
+   "modelo": "PC160LC-8",
+   "peca": "PONTEIRA",
+   "maquina": "",
+   "tp": 0
+  },
+  {
+   "familia": "CT",
+   "modelo": "D71-24",
+   "peca": "VIGA LH/RH",
+   "maquina": "",
+   "tp": 0
+  },
+  {
+   "familia": "CT",
+   "modelo": "D51-22",
+   "peca": "VIGA LH/RH",
+   "maquina": "",
+   "tp": 0
+  },
+  {
+   "familia": "CT",
+   "modelo": "D51-24",
+   "peca": "CHASSI BULLDOZER",
+   "maquina": "",
+   "tp": 0
+  },
+  {
+   "familia": "CT",
+   "modelo": "D61-23",
+   "peca": "CHASSI BULLDOZER",
+   "maquina": "",
+   "tp": 0
+  },
+  {
+   "familia": "CT",
+   "modelo": "D61-24",
+   "peca": "CHASSI BULLDOZER",
+   "maquina": "",
+   "tp": 0
+  },
+  {
+   "familia": "CT",
+   "modelo": "D71-24",
+   "peca": "CHASSI BULLDOZER",
+   "maquina": "",
+   "tp": 0
+  },
+  {
+   "familia": "MG",
+   "modelo": "GD655-5",
+   "peca": "CHASSI BULLDOZER",
+   "maquina": "",
+   "tp": 0
+  },
+  {
+   "familia": "WL/WA",
+   "modelo": "WA200",
+   "peca": "CÍRCULO GD",
+   "maquina": "",
+   "tp": 0
+  },
+  {
+   "familia": "WL/WA",
+   "modelo": "WA150",
+   "peca": "CHASSI TRASEIRO WA'S",
+   "maquina": "",
+   "tp": 0
+  },
+  {
+   "familia": "WL/WA",
+   "modelo": "WA320",
+   "peca": "CHASSI TRASEIRO WA'S",
+   "maquina": "",
+   "tp": 0
+  },
+  {
+   "familia": "WL/WA",
+   "modelo": "WA380",
+   "peca": "CHASSI TRASEIRO WA'S",
+   "maquina": "",
+   "tp": 0
+  },
+  {
+   "familia": "CT",
+   "modelo": "D51-22",
+   "peca": "CHASSI DIANTEIRO WA'S",
+   "maquina": "",
+   "tp": 0
+  },
+  {
+   "familia": "CT",
+   "modelo": "D51-24",
+   "peca": "BARRA DE TRAÇÃO",
+   "maquina": "",
+   "tp": 0
+  },
+  {
+   "familia": "CT",
+   "modelo": "D61-23",
+   "peca": "BARRA DE TRAÇÃO",
+   "maquina": "",
+   "tp": 0
+  },
+  {
+   "familia": "CT",
+   "modelo": "D61-24",
+   "peca": "BARRA DE TRAÇÃO",
+   "maquina": "",
+   "tp": 0
+  },
+  {
+   "familia": "CT",
+   "modelo": "D71-24",
+   "peca": "BARRA DE TRAÇÃO",
+   "maquina": "",
+   "tp": 0
+  },
+  {
+   "familia": "CT",
+   "modelo": "D51-22",
+   "peca": "BARRA DE TRAÇÃO",
+   "maquina": "",
+   "tp": 0
+  },
+  {
+   "familia": "CT",
+   "modelo": "D51-24",
+   "peca": "JOELHO",
+   "maquina": "",
+   "tp": 0
+  },
+  {
+   "familia": "CT",
+   "modelo": "D61-23",
+   "peca": "JOELHO",
+   "maquina": "",
+   "tp": 0
+  },
+  {
+   "familia": "CT",
+   "modelo": "D61-24",
+   "peca": "JOELHO",
+   "maquina": "",
+   "tp": 0
+  },
+  {
+   "familia": "CT",
+   "modelo": "D71-24",
+   "peca": "JOELHO",
+   "maquina": "",
+   "tp": 0
+  },
+  {
+   "familia": "CT",
+   "modelo": "D51-22",
+   "peca": "JOELHO",
+   "maquina": "",
+   "tp": 0
+  },
+  {
+   "familia": "CT",
+   "modelo": "D51-24",
+   "peca": "RIPPER",
+   "maquina": "",
+   "tp": 0
+  },
+  {
+   "familia": "CT",
+   "modelo": "D61-23",
+   "peca": "RIPPER",
+   "maquina": "",
+   "tp": 0
+  },
+  {
+   "familia": "CT",
+   "modelo": "D61-24",
+   "peca": "RIPPER",
+   "maquina": "",
+   "tp": 0
+  },
+  {
+   "familia": "CT",
+   "modelo": "D71-24",
+   "peca": "RIPPER",
+   "maquina": "",
+   "tp": 0
+  },
+  {
+   "familia": "HE/PC",
+   "modelo": "PC130LC-10M0",
+   "peca": "RIPPER",
+   "maquina": "",
+   "tp": 0
+  },
+  {
+   "familia": "HE/PC",
+   "modelo": "PC200-10M0",
+   "peca": "ROLETE",
+   "maquina": "",
+   "tp": 0
+  },
+  {
+   "familia": "HE/PC",
+   "modelo": "PC210LC-10M0",
+   "peca": "ROLETE",
+   "maquina": "",
+   "tp": 0
+  },
+  {
+   "familia": "HE/PC",
+   "modelo": "PC200F-8M0",
+   "peca": "ROLETE",
+   "maquina": "",
+   "tp": 0
+  },
+  {
+   "familia": "HE/PC",
+   "modelo": "PC200-8F",
+   "peca": "ROLETE",
+   "maquina": "",
+   "tp": 0
+  },
+  {
+   "familia": "HE/PC",
+   "modelo": "PC240LC-8",
+   "peca": "ROLETE",
+   "maquina": "",
+   "tp": 0
+  },
+  {
+   "familia": "HE/PC",
+   "modelo": "PC360LC-8M2",
+   "peca": "ROLETE",
+   "maquina": "",
+   "tp": 0
+  },
+  {
+   "familia": "HE/PC",
+   "modelo": "PC210-10M0",
+   "peca": "ROLETE",
+   "maquina": "",
+   "tp": 0
+  },
+  {
+   "familia": "HE/PC",
+   "modelo": "PC160LC-8",
+   "peca": "ROLETE",
+   "maquina": "",
+   "tp": 0
+  },
+  {
+   "familia": "CT",
+   "modelo": "D51-22",
+   "peca": "ROLETE",
+   "maquina": "",
+   "tp": 0
+  },
+  {
+   "familia": "CT",
+   "modelo": "D51-24",
+   "peca": "LÂMINA CT",
+   "maquina": "",
+   "tp": 0
+  },
+  {
+   "familia": "CT",
+   "modelo": "D61-23",
+   "peca": "LÂMINA CT",
+   "maquina": "",
+   "tp": 0
+  },
+  {
+   "familia": "CT",
+   "modelo": "D61-24",
+   "peca": "LÂMINA CT",
+   "maquina": "",
+   "tp": 0
+  },
+  {
+   "familia": "CT",
+   "modelo": "D71-24",
+   "peca": "LÂMINA CT",
+   "maquina": "",
+   "tp": 0
+  },
+  {
+   "familia": "MG",
+   "modelo": "GD655-5",
+   "peca": "LÂMINA CT",
+   "maquina": "",
+   "tp": 0
+  },
+  {
+   "familia": "MG",
+   "modelo": "GD535-5",
+   "peca": "LÂMINA GD",
+   "maquina": "",
+   "tp": 0
+  },
+  {
+   "familia": "HE/PC",
+   "modelo": "PC130LC-10M0",
+   "peca": "LANÇA PC",
+   "maquina": "",
+   "tp": 0
+  },
+  {
+   "familia": "HE/PC",
+   "modelo": "PC200-10M0",
+   "peca": "BRAÇO PC",
+   "maquina": "",
+   "tp": 0
+  },
+  {
+   "familia": "HE/PC",
+   "modelo": "PC210LC-10M0",
+   "peca": "BRAÇO PC",
+   "maquina": "",
+   "tp": 0
+  },
+  {
+   "familia": "HE/PC",
+   "modelo": "PC200F-8M0",
+   "peca": "BRAÇO PC",
+   "maquina": "",
+   "tp": 0
+  },
+  {
+   "familia": "HE/PC",
+   "modelo": "PC200-8F",
+   "peca": "BRAÇO PC",
+   "maquina": "",
+   "tp": 0
+  },
+  {
+   "familia": "HE/PC",
+   "modelo": "PC240LC-8",
+   "peca": "BRAÇO PC",
+   "maquina": "",
+   "tp": 0
+  },
+  {
+   "familia": "HE/PC",
+   "modelo": "PC360LC-8M2",
+   "peca": "BRAÇO PC",
+   "maquina": "",
+   "tp": 0
+  },
+  {
+   "familia": "HE/PC",
+   "modelo": "PC210-10M0",
+   "peca": "BRAÇO PC",
+   "maquina": "",
+   "tp": 0
+  },
+  {
+   "familia": "HE/PC",
+   "modelo": "PC160LC-8",
+   "peca": "BRAÇO PC",
+   "maquina": "",
+   "tp": 0
+  },
+  {
+   "familia": "HE/PC",
+   "modelo": "PC130LC-10M0",
+   "peca": "BRAÇO PC",
+   "maquina": "",
+   "tp": 0
+  },
+  {
+   "familia": "HE/PC",
+   "modelo": "PC200-10M0",
+   "peca": "CORPO CAÇAMBA PC",
+   "maquina": "",
+   "tp": 0
+  },
+  {
+   "familia": "HE/PC",
+   "modelo": "PC210LC-10M0",
+   "peca": "CORPO CAÇAMBA PC",
+   "maquina": "",
+   "tp": 0
+  },
+  {
+   "familia": "HE/PC",
+   "modelo": "PC200F-8M0",
+   "peca": "CORPO CAÇAMBA PC",
+   "maquina": "",
+   "tp": 0
+  },
+  {
+   "familia": "HE/PC",
+   "modelo": "PC200-8F",
+   "peca": "CORPO CAÇAMBA PC",
+   "maquina": "",
+   "tp": 0
+  },
+  {
+   "familia": "HE/PC",
+   "modelo": "PC240LC-8",
+   "peca": "CORPO CAÇAMBA PC",
+   "maquina": "",
+   "tp": 0
+  },
+  {
+   "familia": "HE/PC",
+   "modelo": "PC360LC-8M2",
+   "peca": "CORPO CAÇAMBA PC",
+   "maquina": "",
+   "tp": 0
+  },
+  {
+   "familia": "HE/PC",
+   "modelo": "PC210-10M0",
+   "peca": "CORPO CAÇAMBA PC",
+   "maquina": "",
+   "tp": 0
+  },
+  {
+   "familia": "HE/PC",
+   "modelo": "PC160LC-8",
+   "peca": "CORPO CAÇAMBA PC",
+   "maquina": "",
+   "tp": 0
+  },
+  {
+   "familia": "HE/PC",
+   "modelo": "PC130LC-10M0",
+   "peca": "CORPO CAÇAMBA PC",
+   "maquina": "",
+   "tp": 0
+  },
+  {
+   "familia": "HE/PC",
+   "modelo": "PC200-10M0",
+   "peca": "CAÇAMBA PC",
+   "maquina": "",
+   "tp": 0
+  },
+  {
+   "familia": "HE/PC",
+   "modelo": "PC210LC-10M0",
+   "peca": "CAÇAMBA PC",
+   "maquina": "",
+   "tp": 0
+  },
+  {
+   "familia": "HE/PC",
+   "modelo": "PC200F-8M0",
+   "peca": "CAÇAMBA PC",
+   "maquina": "",
+   "tp": 0
+  },
+  {
+   "familia": "HE/PC",
+   "modelo": "PC200-8F",
+   "peca": "CAÇAMBA PC",
+   "maquina": "",
+   "tp": 0
+  },
+  {
+   "familia": "HE/PC",
+   "modelo": "PC240LC-8",
+   "peca": "CAÇAMBA PC",
+   "maquina": "",
+   "tp": 0
+  },
+  {
+   "familia": "HE/PC",
+   "modelo": "PC360LC-8M2",
+   "peca": "CAÇAMBA PC",
+   "maquina": "",
+   "tp": 0
+  },
+  {
+   "familia": "HE/PC",
+   "modelo": "PC210-10M0",
+   "peca": "CAÇAMBA PC",
+   "maquina": "",
+   "tp": 0
+  },
+  {
+   "familia": "HE/PC",
+   "modelo": "PC160LC-8",
+   "peca": "CAÇAMBA PC",
+   "maquina": "",
+   "tp": 0
+  },
+  {
+   "familia": "HE/PC",
+   "modelo": "PC130LC-10M0",
+   "peca": "CAÇAMBA PC",
+   "maquina": "",
+   "tp": 0
+  },
+  {
+   "familia": "HE/PC",
+   "modelo": "PC200-10M0",
+   "peca": "PLACA DO DENTE PC",
+   "maquina": "",
+   "tp": 0
+  },
+  {
+   "familia": "HE/PC",
+   "modelo": "PC210LC-10M0",
+   "peca": "PLACA DO DENTE PC",
+   "maquina": "",
+   "tp": 0
+  },
+  {
+   "familia": "HE/PC",
+   "modelo": "PC200F-8M0",
+   "peca": "PLACA DO DENTE PC",
+   "maquina": "",
+   "tp": 0
+  },
+  {
+   "familia": "HE/PC",
+   "modelo": "PC200-8F",
+   "peca": "PLACA DO DENTE PC",
+   "maquina": "",
+   "tp": 0
+  },
+  {
+   "familia": "HE/PC",
+   "modelo": "PC240LC-8",
+   "peca": "PLACA DO DENTE PC",
+   "maquina": "",
+   "tp": 0
+  },
+  {
+   "familia": "HE/PC",
+   "modelo": "PC360LC-8M2",
+   "peca": "PLACA DO DENTE PC",
+   "maquina": "",
+   "tp": 0
+  },
+  {
+   "familia": "HE/PC",
+   "modelo": "PC210-10M0",
+   "peca": "PLACA DO DENTE PC",
+   "maquina": "",
+   "tp": 0
+  },
+  {
+   "familia": "HE/PC",
+   "modelo": "PC160LC-8",
+   "peca": "PLACA DO DENTE PC",
+   "maquina": "",
+   "tp": 0
+  },
+  {
+   "familia": "HE/PC",
+   "modelo": "PC130",
+   "peca": "PLACA DO DENTE PC",
+   "maquina": "",
+   "tp": 0
+  },
+  {
+   "familia": "HE/PC",
+   "modelo": "PC200",
+   "peca": "CONTRA PESO PC",
+   "maquina": "",
+   "tp": 0
+  },
+  {
+   "familia": "HE/PC",
+   "modelo": "PC210LC",
+   "peca": "CONTRA PESO PC",
+   "maquina": "",
+   "tp": 0
+  },
+  {
+   "familia": "HE/PC",
+   "modelo": "PC210F",
+   "peca": "CONTRA PESO PC",
+   "maquina": "",
+   "tp": 0
+  },
+  {
+   "familia": "HE/PC",
+   "modelo": "PC220F",
+   "peca": "CONTRA PESO PC",
+   "maquina": "",
+   "tp": 0
+  },
+  {
+   "familia": "HE/PC",
+   "modelo": "PC240",
+   "peca": "CONTRA PESO PC",
+   "maquina": "",
+   "tp": 0
+  },
+  {
+   "familia": "HE/PC",
+   "modelo": "PC360",
+   "peca": "CONTRA PESO PC",
+   "maquina": "",
+   "tp": 0
+  },
+  {
+   "familia": "HE/PC",
+   "modelo": "PC500",
+   "peca": "CONTRA PESO PC",
+   "maquina": "",
+   "tp": 0
+  },
+  {
+   "familia": "HE/PC",
+   "modelo": "PC210",
+   "peca": "CONTRA PESO PC",
+   "maquina": "",
+   "tp": 0
+  },
+  {
+   "familia": "HE/PC",
+   "modelo": "PC160",
+   "peca": "CONTRA PESO PC",
+   "maquina": "",
+   "tp": 0
+  },
+  {
+   "familia": "CT",
+   "modelo": "D51-22",
+   "peca": "CONTRA PESO PC",
+   "maquina": "",
+   "tp": 0
+  },
+  {
+   "familia": "CT",
+   "modelo": "D51-24",
+   "peca": "CONTRA PESO PC",
+   "maquina": "",
+   "tp": 0
+  },
+  {
+   "familia": "CT",
+   "modelo": "D61-23",
+   "peca": "CONTRA PESO PC",
+   "maquina": "",
+   "tp": 0
+  },
+  {
+   "familia": "CT",
+   "modelo": "D61-24",
+   "peca": "CONTRA PESO PC",
+   "maquina": "",
+   "tp": 0
+  },
+  {
+   "familia": "HE/PC",
+   "modelo": "PC200-10M0",
+   "peca": "CONTRA PESO PC",
+   "maquina": "",
+   "tp": 0
+  },
+  {
+   "familia": "HE/PC",
+   "modelo": "PC210LC-10M0",
+   "peca": "CONTRA PESO PC",
+   "maquina": "",
+   "tp": 0
+  },
+  {
+   "familia": "HE/PC",
+   "modelo": "PC200F-8M0",
+   "peca": "CONTRA PESO PC",
+   "maquina": "",
+   "tp": 0
+  },
+  {
+   "familia": "CT",
+   "modelo": "D51-22",
+   "peca": "CONTRA PESO PC",
+   "maquina": "",
+   "tp": 0
+  },
+  {
+   "familia": "CT",
+   "modelo": "D51-24",
+   "peca": "CONTRA PESO PC",
+   "maquina": "",
+   "tp": 0
+  },
+  {
+   "familia": "CT",
+   "modelo": "D61-23",
+   "peca": "CONTRA PESO PC",
+   "maquina": "",
+   "tp": 0
+  },
+  {
+   "familia": "CT",
+   "modelo": "D61-24",
+   "peca": "CONTRA PESO PC",
+   "maquina": "",
+   "tp": 0
+  },
+  {
+   "familia": "HE/PC",
+   "modelo": "PC200-10M0",
+   "peca": "CONTRA PESO PC",
+   "maquina": "",
+   "tp": 0
+  },
+  {
+   "familia": "HE/PC",
+   "modelo": "PC210LC-10M0",
+   "peca": "CONTRA PESO PC",
+   "maquina": "",
+   "tp": 0
+  },
+  {
+   "familia": "HE/PC",
+   "modelo": "PC200F-8M0",
+   "peca": "CONTRA PESO PC",
+   "maquina": "",
+   "tp": 0
+  },
+  {
+   "familia": "HE/PC",
+   "modelo": "PC200-8F",
+   "peca": "CONTRA PESO PC",
+   "maquina": "",
+   "tp": 0
+  },
+  {
+   "familia": "HE/PC",
+   "modelo": "PC240LC-8",
+   "peca": "CONTRA PESO PC",
+   "maquina": "",
+   "tp": 0
+  },
+  {
+   "familia": "WL/WA",
+   "modelo": "WA200-6",
+   "peca": "CONTRA PESO PC",
+   "maquina": "",
+   "tp": 0
+  },
+  {
+   "familia": "WL/WA",
+   "modelo": "WA320-6",
+   "peca": "CONTRA PESO PC",
+   "maquina": "",
+   "tp": 0
+  },
+  {
+   "familia": "WL/WA",
+   "modelo": "WA200-6",
+   "peca": "CONTRA PESO PC",
+   "maquina": "",
+   "tp": 0
+  },
+  {
+   "familia": "WL/WA",
+   "modelo": "WA320-6",
+   "peca": "CONTRA PESO PC",
+   "maquina": "",
+   "tp": 0
+  },
+  {
+   "familia": "HE/PC",
+   "modelo": "PC130LC-10M0",
+   "peca": "CONTRA PESO PC",
+   "maquina": "",
+   "tp": 0
+  },
+  {
+   "familia": "HE/PC",
+   "modelo": "PC200-10M0",
+   "peca": "CONTRA PESO PC",
+   "maquina": "",
+   "tp": 0
+  },
+  {
+   "familia": "HE/PC",
+   "modelo": "PC210LC-10M0",
+   "peca": "CONTRA PESO PC",
+   "maquina": "",
+   "tp": 0
+  },
+  {
+   "familia": "HE/PC",
+   "modelo": "PC200F-8M0",
+   "peca": "CONTRA PESO PC",
+   "maquina": "",
+   "tp": 0
+  },
+  {
+   "familia": "HE/PC",
+   "modelo": "PC200-8F",
+   "peca": "CONTRA PESO PC",
+   "maquina": "",
+   "tp": 0
+  },
+  {
+   "familia": "HE/PC",
+   "modelo": "PC240LC-8",
+   "peca": "CONTRA PESO PC",
+   "maquina": "",
+   "tp": 0
+  },
+  {
+   "familia": "HE/PC",
+   "modelo": "PC360LC-8M2",
+   "peca": "CONTRA PESO PC",
+   "maquina": "",
+   "tp": 0
+  },
+  {
+   "familia": "HE/PC",
+   "modelo": "PC210-10M0",
+   "peca": "CONTRA PESO PC",
+   "maquina": "",
+   "tp": 0
+  },
+  {
+   "familia": "HE/PC",
+   "modelo": "PC160LC-8",
+   "peca": "CONTRA PESO PC",
+   "maquina": "",
+   "tp": 0
+  },
+  {
+   "familia": "CT",
+   "modelo": "D51-22",
+   "peca": "CONTRA PESO PC",
+   "maquina": "",
+   "tp": 0
+  },
+  {
+   "familia": "CT",
+   "modelo": "D51-24",
+   "peca": "CONTRA PESO PC",
+   "maquina": "",
+   "tp": 0
+  },
+  {
+   "familia": "CT",
+   "modelo": "D61-23",
+   "peca": "CONTRA PESO PC",
+   "maquina": "",
+   "tp": 0
+  },
+  {
+   "familia": "CT",
+   "modelo": "D61-24",
+   "peca": "CONTRA PESO PC",
+   "maquina": "",
+   "tp": 0
+  },
+  {
+   "familia": "WL/WA",
+   "modelo": "WA380-6",
+   "peca": "CONTRA PESO PC",
+   "maquina": "",
+   "tp": 0
+  },
+  {
+   "familia": "MG",
+   "modelo": "GD655-5",
+   "peca": "CONTRA PESO PC",
+   "maquina": "",
+   "tp": 0
+  },
+  {
+   "familia": "WL/WA",
+   "modelo": "WA200-6",
+   "peca": "CONTRA PESO PC",
+   "maquina": "",
+   "tp": 0
+  },
+  {
+   "familia": "WL/WA",
+   "modelo": "WA320-6",
+   "peca": "CONTRA PESO PC",
+   "maquina": "",
+   "tp": 0
+  },
+  {
+   "familia": "HE/PC",
+   "modelo": "PC130LC-10M0",
+   "peca": "CONTRA PESO PC",
+   "maquina": "",
+   "tp": 0
+  },
+  {
+   "familia": "HE/PC",
+   "modelo": "PC200-10M0",
+   "peca": "CONTRA PESO PC",
+   "maquina": "",
+   "tp": 0
+  },
+  {
+   "familia": "HE/PC",
+   "modelo": "PC210LC-10M0",
+   "peca": "CONTRA PESO PC",
+   "maquina": "",
+   "tp": 0
+  },
+  {
+   "familia": "HE/PC",
+   "modelo": "PC200F-8M0",
+   "peca": "CONTRA PESO PC",
+   "maquina": "",
+   "tp": 0
+  },
+  {
+   "familia": "HE/PC",
+   "modelo": "PC200-8F",
+   "peca": "CONTRA PESO PC",
+   "maquina": "",
+   "tp": 0
+  },
+  {
+   "familia": "HE/PC",
+   "modelo": "PC240LC-8",
+   "peca": "CONTRA PESO PC",
+   "maquina": "",
+   "tp": 0
+  },
+  {
+   "familia": "HE/PC",
+   "modelo": "PC360LC-8M2",
+   "peca": "CONTRA PESO PC",
+   "maquina": "",
+   "tp": 0
+  },
+  {
+   "familia": "HE/PC",
+   "modelo": "PC210-10M0",
+   "peca": "CONTRA PESO PC",
+   "maquina": "",
+   "tp": 0
+  },
+  {
+   "familia": "HE/PC",
+   "modelo": "PC160LC-8",
+   "peca": "CONTRA PESO PC",
+   "maquina": "",
+   "tp": 0
+  },
+  {
+   "familia": "CT",
+   "modelo": "D51-22",
+   "peca": "CONTRA PESO PC",
+   "maquina": "",
+   "tp": 0
+  },
+  {
+   "familia": "CT",
+   "modelo": "D51-24",
+   "peca": "CONTRA PESO PC",
+   "maquina": "",
+   "tp": 0
+  },
+  {
+   "familia": "CT",
+   "modelo": "D61-23",
+   "peca": "CONTRA PESO PC",
+   "maquina": "",
+   "tp": 0
+  },
+  {
+   "familia": "CT",
+   "modelo": "D61-24",
+   "peca": "CONTRA PESO PC",
+   "maquina": "",
+   "tp": 0
+  },
+  {
+   "familia": "WL/WA",
+   "modelo": "WA200-6",
+   "peca": "CONTRA PESO PC",
+   "maquina": "",
+   "tp": 0
+  },
+  {
+   "familia": "WL/WA",
+   "modelo": "WA320-6",
+   "peca": "CONTRA PESO PC",
+   "maquina": "",
+   "tp": 0
+  },
+  {
+   "familia": "WL/WA",
+   "modelo": "WA200-6",
+   "peca": "CONTRA PESO PC",
+   "maquina": "",
+   "tp": 0
+  },
+  {
+   "familia": "WL/WA",
+   "modelo": "WA320-6",
+   "peca": "CONTRA PESO PC",
+   "maquina": "",
+   "tp": 0
+  },
+  {
+   "familia": "HE/PC",
+   "modelo": "PC130LC-10M0",
+   "peca": "CONTRA PESO PC",
+   "maquina": "",
+   "tp": 0
+  },
+  {
+   "familia": "HE/PC",
+   "modelo": "PC200-10M0",
+   "peca": "CONTRA PESO PC",
+   "maquina": "",
+   "tp": 0
+  },
+  {
+   "familia": "HE/PC",
+   "modelo": "PC210LC-10M0",
+   "peca": "CONTRA PESO PC",
+   "maquina": "",
+   "tp": 0
+  },
+  {
+   "familia": "HE/PC",
+   "modelo": "PC200F-8M0",
+   "peca": "CONTRA PESO PC",
+   "maquina": "",
+   "tp": 0
+  },
+  {
+   "familia": "HE/PC",
+   "modelo": "PC200-8F",
+   "peca": "CONTRA PESO PC",
+   "maquina": "",
+   "tp": 0
+  },
+  {
+   "familia": "HE/PC",
+   "modelo": "PC240LC-8",
+   "peca": "CONTRA PESO PC",
+   "maquina": "",
+   "tp": 0
+  },
+  {
+   "familia": "HE/PC",
+   "modelo": "PC360LC-8M2",
+   "peca": "CONTRA PESO PC",
+   "maquina": "",
+   "tp": 0
+  },
+  {
+   "familia": "HE/PC",
+   "modelo": "PC210-10M0",
+   "peca": "CONTRA PESO PC",
+   "maquina": "",
+   "tp": 0
+  },
+  {
+   "familia": "HE/PC",
+   "modelo": "PC160LC-8",
+   "peca": "CONTRA PESO PC",
+   "maquina": "",
+   "tp": 0
+  },
+  {
+   "familia": "CT",
+   "modelo": "D51-22",
+   "peca": "CONTRA PESO PC",
+   "maquina": "",
+   "tp": 0
+  },
+  {
+   "familia": "CT",
+   "modelo": "D51-24",
+   "peca": "CONTRA PESO PC",
+   "maquina": "",
+   "tp": 0
+  },
+  {
+   "familia": "CT",
+   "modelo": "D61-23",
+   "peca": "CONTRA PESO PC",
+   "maquina": "",
+   "tp": 0
+  },
+  {
+   "familia": "CT",
+   "modelo": "D61-24",
+   "peca": "CONTRA PESO PC",
+   "maquina": "",
+   "tp": 0
+  },
+  {
+   "familia": "CT",
+   "modelo": "D51-22",
+   "peca": "CONTRA PESO PC",
+   "maquina": "",
+   "tp": 0
+  },
+  {
+   "familia": "CT",
+   "modelo": "D51-24",
+   "peca": "CONTRA PESO PC",
+   "maquina": "",
+   "tp": 0
+  },
+  {
+   "familia": "CT",
+   "modelo": "D61-23",
+   "peca": "CONTRA PESO PC",
+   "maquina": "",
+   "tp": 0
+  },
+  {
+   "familia": "CT",
+   "modelo": "D61-24",
+   "peca": "CONTRA PESO PC",
+   "maquina": "",
+   "tp": 0
+  },
+  {
+   "familia": "WL/WA",
+   "modelo": "WA200-6",
+   "peca": "CONTRA PESO PC",
+   "maquina": "",
+   "tp": 0
+  },
+  {
+   "familia": "WL/WA",
+   "modelo": "WA320-6",
+   "peca": "CONTRA PESO PC",
+   "maquina": "",
+   "tp": 0
+  },
+  {
+   "familia": "HE/PC",
+   "modelo": "PC130LC-10M0",
+   "peca": "CONTRA PESO PC",
+   "maquina": "",
+   "tp": 0
+  },
+  {
+   "familia": "HE/PC",
+   "modelo": "PC200-10M0",
+   "peca": "CONTRA PESO PC",
+   "maquina": "",
+   "tp": 0
+  },
+  {
+   "familia": "HE/PC",
+   "modelo": "PC210LC-10M0",
+   "peca": "CONTRA PESO PC",
+   "maquina": "",
+   "tp": 0
+  },
+  {
+   "familia": "HE/PC",
+   "modelo": "PC200F-8M0",
+   "peca": "CONTRA PESO PC",
+   "maquina": "",
+   "tp": 0
+  },
+  {
+   "familia": "HE/PC",
+   "modelo": "PC200-8F",
+   "peca": "CONTRA PESO PC",
+   "maquina": "",
+   "tp": 0
+  },
+  {
+   "familia": "HE/PC",
+   "modelo": "PC240LC-8",
+   "peca": "CONTRA PESO PC",
+   "maquina": "",
+   "tp": 0
+  },
+  {
+   "familia": "HE/PC",
+   "modelo": "PC360LC-8M2",
+   "peca": "CONTRA PESO PC",
+   "maquina": "",
+   "tp": 0
+  },
+  {
+   "familia": "HE/PC",
+   "modelo": "PC210-10M0",
+   "peca": "CONTRA PESO PC",
+   "maquina": "",
+   "tp": 0
+  },
+  {
+   "familia": "HE/PC",
+   "modelo": "PC160LC-8",
+   "peca": "CONTRA PESO PC",
+   "maquina": "",
+   "tp": 0
+  },
+  {
+   "familia": "HE/PC",
+   "modelo": "PC130LC-10M0",
+   "peca": "CONTRA PESO PC",
+   "maquina": "",
+   "tp": 0
+  },
+  {
+   "familia": "HE/PC",
+   "modelo": "PC200-10M0",
+   "peca": "CONTRA PESO PC",
+   "maquina": "",
+   "tp": 0
+  },
+  {
+   "familia": "HE/PC",
+   "modelo": "PC210LC-10M0",
+   "peca": "CONTRA PESO PC",
+   "maquina": "",
+   "tp": 0
+  },
+  {
+   "familia": "HE/PC",
+   "modelo": "PC200F-8M0",
+   "peca": "CONTRA PESO PC",
+   "maquina": "",
+   "tp": 0
+  },
+  {
+   "familia": "HE/PC",
+   "modelo": "PC200-8F",
+   "peca": "CONTRA PESO PC",
+   "maquina": "",
+   "tp": 0
+  },
+  {
+   "familia": "HE/PC",
+   "modelo": "PC240LC-8",
+   "peca": "CONTRA PESO PC",
+   "maquina": "",
+   "tp": 0
+  },
+  {
+   "familia": "HE/PC",
+   "modelo": "PC360LC-8M2",
+   "peca": "CONTRA PESO PC",
+   "maquina": "",
+   "tp": 0
+  },
+  {
+   "familia": "HE/PC",
+   "modelo": "PC210-10M0",
+   "peca": "CONTRA PESO PC",
+   "maquina": "",
+   "tp": 0
+  },
+  {
+   "familia": "HE/PC",
+   "modelo": "PC160LC-8",
+   "peca": "CONTRA PESO PC",
+   "maquina": "",
+   "tp": 0
+  },
+  {
+   "familia": "CT",
+   "modelo": "D51-22",
+   "peca": "CONTRA PESO PC",
+   "maquina": "",
+   "tp": 0
+  },
+  {
+   "familia": "CT",
+   "modelo": "D51-24",
+   "peca": "CONTRA PESO PC",
+   "maquina": "",
+   "tp": 0
+  },
+  {
+   "familia": "CT",
+   "modelo": "D61-23",
+   "peca": "CONTRA PESO PC",
+   "maquina": "",
+   "tp": 0
+  },
+  {
+   "familia": "CT",
+   "modelo": "D61-24",
+   "peca": "CONTRA PESO PC",
+   "maquina": "",
+   "tp": 0
+  },
+  {
+   "familia": "WL/WA",
+   "modelo": "WA200-6",
+   "peca": "CONTRA PESO PC",
+   "maquina": "",
+   "tp": 0
+  },
+  {
+   "familia": "WL/WA",
+   "modelo": "WA320-6",
+   "peca": "CONTRA PESO PC",
+   "maquina": "",
+   "tp": 0
+  },
+  {
+   "familia": "WL/WA",
+   "modelo": "WA380-6",
+   "peca": "CONTRA PESO PC",
+   "maquina": "",
+   "tp": 0
+  },
+  {
+   "familia": "MG",
+   "modelo": "GD655-5",
+   "peca": "CONTRA PESO PC",
+   "maquina": "",
+   "tp": 0
+  },
+  {
+   "familia": "HE/PC",
+   "modelo": "PC130LC-10M0",
+   "peca": "CONTRA PESO PC",
+   "maquina": "",
+   "tp": 0
+  },
+  {
+   "familia": "HE/PC",
+   "modelo": "PC200-10M0",
+   "peca": "CONTRA PESO PC",
+   "maquina": "",
+   "tp": 0
+  },
+  {
+   "familia": "HE/PC",
+   "modelo": "PC210LC-10M0",
+   "peca": "CONTRA PESO PC",
+   "maquina": "",
+   "tp": 0
+  },
+  {
+   "familia": "HE/PC",
+   "modelo": "PC200F-8M0",
+   "peca": "CONTRA PESO PC",
+   "maquina": "",
+   "tp": 0
+  },
+  {
+   "familia": "HE/PC",
+   "modelo": "PC200-8F",
+   "peca": "CONTRA PESO PC",
+   "maquina": "",
+   "tp": 0
+  },
+  {
+   "familia": "HE/PC",
+   "modelo": "PC240LC-8",
+   "peca": "CONTRA PESO PC",
+   "maquina": "",
+   "tp": 0
+  },
+  {
+   "familia": "HE/PC",
+   "modelo": "PC360LC-8M2",
+   "peca": "CONTRA PESO PC",
+   "maquina": "",
+   "tp": 0
+  },
+  {
+   "familia": "HE/PC",
+   "modelo": "PC210-10M0",
+   "peca": "CONTRA PESO PC",
+   "maquina": "",
+   "tp": 0
+  },
+  {
+   "familia": "HE/PC",
+   "modelo": "PC160LC-8",
+   "peca": "CONTRA PESO PC",
+   "maquina": "",
+   "tp": 0
+  },
+  {
+   "familia": "WL/WA",
+   "modelo": "WA380-6",
+   "peca": "CONTRA PESO PC",
+   "maquina": "",
+   "tp": 0
+  },
+  {
+   "familia": "MG",
+   "modelo": "GD655-5",
+   "peca": "CONTRA PESO PC",
+   "maquina": "",
+   "tp": 0
+  },
+  {
+   "familia": "HE/PC",
+   "modelo": "PC130LC-10M0",
+   "peca": "CONTRA PESO PC",
+   "maquina": "",
+   "tp": 0
+  },
+  {
+   "familia": "HE/PC",
+   "modelo": "PC200-10M0",
+   "peca": "CONTRA PESO PC",
+   "maquina": "",
+   "tp": 0
+  },
+  {
+   "familia": "HE/PC",
+   "modelo": "PC210LC-10M0",
+   "peca": "CONTRA PESO PC",
+   "maquina": "",
+   "tp": 0
+  },
+  {
+   "familia": "HE/PC",
+   "modelo": "PC200F-8M0",
+   "peca": "CONTRA PESO PC",
+   "maquina": "",
+   "tp": 0
+  },
+  {
+   "familia": "HE/PC",
+   "modelo": "PC200-8F",
+   "peca": "CONTRA PESO PC",
+   "maquina": "",
+   "tp": 0
+  },
+  {
+   "familia": "HE/PC",
+   "modelo": "PC240LC-8",
+   "peca": "CONTRA PESO PC",
+   "maquina": "",
+   "tp": 0
+  },
+  {
+   "familia": "HE/PC",
+   "modelo": "PC360LC-8M2",
+   "peca": "CONTRA PESO PC",
+   "maquina": "",
+   "tp": 0
+  },
+  {
+   "familia": "HE/PC",
+   "modelo": "PC210-10M0",
+   "peca": "CONTRA PESO PC",
+   "maquina": "",
+   "tp": 0
+  },
+  {
+   "familia": "HE/PC",
+   "modelo": "PC160LC-8",
+   "peca": "CONTRA PESO PC",
+   "maquina": "",
+   "tp": 0
+  },
+  {
+   "familia": "CT",
+   "modelo": "D51-22",
+   "peca": "CONTRA PESO PC",
+   "maquina": "",
+   "tp": 0
+  },
+  {
+   "familia": "CT",
+   "modelo": "D51-24",
+   "peca": "CONTRA PESO PC",
+   "maquina": "",
+   "tp": 0
+  },
+  {
+   "familia": "CT",
+   "modelo": "D61-23",
+   "peca": "CONTRA PESO PC",
+   "maquina": "",
+   "tp": 0
+  },
+  {
+   "familia": "CT",
+   "modelo": "D61-24",
+   "peca": "CONTRA PESO PC",
+   "maquina": "",
+   "tp": 0
+  },
+  {
+   "familia": "WL/WA",
+   "modelo": "WA200-6",
+   "peca": "CONTRA PESO PC",
+   "maquina": "",
+   "tp": 0
+  },
+  {
+   "familia": "WL/WA",
+   "modelo": "WA320-6",
+   "peca": "CONTRA PESO PC",
+   "maquina": "",
+   "tp": 0
+  },
+  {
+   "familia": "WL/WA",
+   "modelo": "WA380-6",
+   "peca": "CONTRA PESO PC",
+   "maquina": "",
+   "tp": 0
+  },
+  {
+   "familia": "MG",
+   "modelo": "GD655-5",
+   "peca": "CONTRA PESO PC",
+   "maquina": "",
+   "tp": 0
+  },
+  {
+   "familia": "HE/PC",
+   "modelo": "PC130LC-10M0",
+   "peca": "CONTRA PESO PC",
+   "maquina": "",
+   "tp": 0
+  },
+  {
+   "familia": "HE/PC",
+   "modelo": "PC200-10M0",
+   "peca": "CONTRA PESO PC",
+   "maquina": "",
+   "tp": 0
+  },
+  {
+   "familia": "HE/PC",
+   "modelo": "PC210LC-10M0",
+   "peca": "CONTRA PESO PC",
+   "maquina": "",
+   "tp": 0
+  },
+  {
+   "familia": "HE/PC",
+   "modelo": "PC200F-8M0",
+   "peca": "CONTRA PESO PC",
+   "maquina": "",
+   "tp": 0
+  },
+  {
+   "familia": "HE/PC",
+   "modelo": "PC200-8F",
+   "peca": "CONTRA PESO PC",
+   "maquina": "",
+   "tp": 0
+  },
+  {
+   "familia": "HE/PC",
+   "modelo": "PC240LC-8",
+   "peca": "CONTRA PESO PC",
+   "maquina": "",
+   "tp": 0
+  },
+  {
+   "familia": "HE/PC",
+   "modelo": "PC360LC-8M2",
+   "peca": "CONTRA PESO PC",
+   "maquina": "",
+   "tp": 0
+  },
+  {
+   "familia": "HE/PC",
+   "modelo": "PC210-10M0",
+   "peca": "CONTRA PESO PC",
+   "maquina": "",
+   "tp": 0
+  },
+  {
+   "familia": "HE/PC",
+   "modelo": "PC160LC-8",
+   "peca": "CONTRA PESO PC",
+   "maquina": "",
+   "tp": 0
+  },
+  {
+   "familia": "CT",
+   "modelo": "D51-22",
+   "peca": "CONTRA PESO PC",
+   "maquina": "",
+   "tp": 0
+  },
+  {
+   "familia": "CT",
+   "modelo": "D51-24",
+   "peca": "CONTRA PESO PC",
+   "maquina": "",
+   "tp": 0
+  },
+  {
+   "familia": "CT",
+   "modelo": "D61-23",
+   "peca": "CONTRA PESO PC",
+   "maquina": "",
+   "tp": 0
+  },
+  {
+   "familia": "CT",
+   "modelo": "D61-24",
+   "peca": "CONTRA PESO PC",
+   "maquina": "",
+   "tp": 0
+  },
+  {
+   "familia": "WL/WA",
+   "modelo": "WA200-6",
+   "peca": "CONTRA PESO PC",
+   "maquina": "",
+   "tp": 0
+  },
+  {
+   "familia": "WL/WA",
+   "modelo": "WA320-6",
+   "peca": "CONTRA PESO PC",
+   "maquina": "",
+   "tp": 0
+  },
+  {
+   "familia": "WL/WA",
+   "modelo": "WA380-6",
+   "peca": "CONTRA PESO PC",
+   "maquina": "",
+   "tp": 0
+  },
+  {
+   "familia": "MG",
+   "modelo": "GD655-5",
+   "peca": "CONTRA PESO PC",
+   "maquina": "",
+   "tp": 0
+  },
+  {
+   "familia": "HE/PC",
+   "modelo": "PC130LC-10M0",
+   "peca": "CONTRA PESO PC",
+   "maquina": "",
+   "tp": 0
+  },
+  {
+   "familia": "HE/PC",
+   "modelo": "PC200-10M0",
+   "peca": "CONTRA PESO PC",
+   "maquina": "",
+   "tp": 0
+  },
+  {
+   "familia": "HE/PC",
+   "modelo": "PC210LC-10M0",
+   "peca": "CONTRA PESO PC",
+   "maquina": "",
+   "tp": 0
+  },
+  {
+   "familia": "HE/PC",
+   "modelo": "PC200F-8M0",
+   "peca": "CONTRA PESO PC",
+   "maquina": "",
+   "tp": 0
+  },
+  {
+   "familia": "HE/PC",
+   "modelo": "PC200-8F",
+   "peca": "CONTRA PESO PC",
+   "maquina": "",
+   "tp": 0
+  },
+  {
+   "familia": "HE/PC",
+   "modelo": "PC240LC-8",
+   "peca": "CONTRA PESO PC",
+   "maquina": "",
+   "tp": 0
+  },
+  {
+   "familia": "HE/PC",
+   "modelo": "PC360LC-8M2",
+   "peca": "CONTRA PESO PC",
+   "maquina": "",
+   "tp": 0
+  },
+  {
+   "familia": "HE/PC",
+   "modelo": "PC210-10M0",
+   "peca": "CONTRA PESO PC",
+   "maquina": "",
+   "tp": 0
+  },
+  {
+   "familia": "HE/PC",
+   "modelo": "PC160LC-8",
+   "peca": "CONTRA PESO PC",
+   "maquina": "",
+   "tp": 0
+  },
+  {
+   "familia": "CT",
+   "modelo": "D51-22",
+   "peca": "CONTRA PESO PC",
+   "maquina": "",
+   "tp": 0
+  },
+  {
+   "familia": "CT",
+   "modelo": "D51-24",
+   "peca": "CONTRA PESO PC",
+   "maquina": "",
+   "tp": 0
+  },
+  {
+   "familia": "CT",
+   "modelo": "D61-23",
+   "peca": "CONTRA PESO PC",
+   "maquina": "",
+   "tp": 0
+  },
+  {
+   "familia": "CT",
+   "modelo": "D61-24",
+   "peca": "CONTRA PESO PC",
+   "maquina": "",
+   "tp": 0
+  },
+  {
+   "familia": "WL/WA",
+   "modelo": "WA200-6",
+   "peca": "CONTRA PESO PC",
+   "maquina": "",
+   "tp": 0
+  },
+  {
+   "familia": "WL/WA",
+   "modelo": "WA320-6",
+   "peca": "CONTRA PESO PC",
+   "maquina": "",
+   "tp": 0
+  },
+  {
+   "familia": "WL/WA",
+   "modelo": "WA380-6",
+   "peca": "CONTRA PESO PC",
+   "maquina": "",
+   "tp": 0
+  },
+  {
+   "familia": "MG",
+   "modelo": "GD655-5",
+   "peca": "CONTRA PESO PC",
+   "maquina": "",
+   "tp": 0
+  },
+  {
+   "familia": "HE/PC",
+   "modelo": "PC130LC-10M0",
+   "peca": "CONTRA PESO PC",
+   "maquina": "",
+   "tp": 0
+  },
+  {
+   "familia": "HE/PC",
+   "modelo": "PC200-10M0",
+   "peca": "CONTRA PESO PC",
+   "maquina": "",
+   "tp": 0
+  },
+  {
+   "familia": "HE/PC",
+   "modelo": "PC210LC-10M0",
+   "peca": "CONTRA PESO PC",
+   "maquina": "",
+   "tp": 0
+  },
+  {
+   "familia": "HE/PC",
+   "modelo": "PC200F-8M0",
+   "peca": "CONTRA PESO PC",
+   "maquina": "",
+   "tp": 0
+  },
+  {
+   "familia": "HE/PC",
+   "modelo": "PC200-8F",
+   "peca": "CONTRA PESO PC",
+   "maquina": "",
+   "tp": 0
+  },
+  {
+   "familia": "HE/PC",
+   "modelo": "PC240LC-8",
+   "peca": "CONTRA PESO PC",
+   "maquina": "",
+   "tp": 0
+  },
+  {
+   "familia": "HE/PC",
+   "modelo": "PC360LC-8M2",
+   "peca": "CONTRA PESO PC",
+   "maquina": "",
+   "tp": 0
+  },
+  {
+   "familia": "HE/PC",
+   "modelo": "PC210-10M0",
+   "peca": "CONTRA PESO PC",
+   "maquina": "",
+   "tp": 0
+  },
+  {
+   "familia": "HE/PC",
+   "modelo": "PC160LC-8",
+   "peca": "CONTRA PESO PC",
+   "maquina": "",
+   "tp": 0
+  },
+  {
+   "familia": "CT",
+   "modelo": "D51-22",
+   "peca": "CONTRA PESO PC",
+   "maquina": "",
+   "tp": 0
+  },
+  {
+   "familia": "CT",
+   "modelo": "D51-24",
+   "peca": "CONTRA PESO PC",
+   "maquina": "",
+   "tp": 0
+  },
+  {
+   "familia": "CT",
+   "modelo": "D61-23",
+   "peca": "CONTRA PESO PC",
+   "maquina": "",
+   "tp": 0
+  },
+  {
+   "familia": "CT",
+   "modelo": "D61-24",
+   "peca": "CONTRA PESO PC",
+   "maquina": "",
+   "tp": 0
+  },
+  {
+   "familia": "WL/WA",
+   "modelo": "WA200-6",
+   "peca": "CONTRA PESO PC",
+   "maquina": "",
+   "tp": 0
+  },
+  {
+   "familia": "WL/WA",
+   "modelo": "WA320-6",
+   "peca": "CONTRA PESO PC",
+   "maquina": "",
+   "tp": 0
+  },
+  {
+   "familia": "WL/WA",
+   "modelo": "WA380-6",
+   "peca": "CONTRA PESO PC",
+   "maquina": "",
+   "tp": 0
+  },
+  {
+   "familia": "MG",
+   "modelo": "GD655-5",
+   "peca": "CONTRA PESO PC",
+   "maquina": "",
+   "tp": 0
+  },
+  {
+   "familia": "WL/WA",
+   "modelo": "WA380-6",
+   "peca": "CONTRA PESO PC",
+   "maquina": "",
+   "tp": 0
+  },
+  {
+   "familia": "HE/PC",
+   "modelo": "PC210-10M0",
+   "peca": "CONTRA PESO PC",
+   "maquina": "",
+   "tp": 0
+  },
+  {
+   "familia": "MG",
+   "modelo": "GD655-5",
+   "peca": "CONTRA PESO PC",
+   "maquina": "",
+   "tp": 0
+  },
+  {
+   "familia": "HE/PC",
+   "modelo": "PC200F-8M0",
+   "peca": "CONTRA PESO PC",
+   "maquina": "",
+   "tp": 0
+  },
+  {
+   "familia": "HE/PC",
+   "modelo": "PC200-8F",
+   "peca": "CONTRA PESO PC",
+   "maquina": "",
+   "tp": 0
+  },
+  {
+   "familia": "HE/PC",
+   "modelo": "PC130LC-10M0",
+   "peca": "CONTRA PESO PC",
+   "maquina": "",
+   "tp": 0
+  },
+  {
+   "familia": "HE/PC",
+   "modelo": "PC200-10M0",
+   "peca": "CAB",
+   "maquina": "",
+   "tp": 0
+  },
+  {
+   "familia": "HE/PC",
+   "modelo": "PC210LC-10M0",
+   "peca": "CAB",
+   "maquina": "",
+   "tp": 0
+  },
+  {
+   "familia": "HE/PC",
+   "modelo": "PC200F-8M0",
+   "peca": "CAB",
+   "maquina": "",
+   "tp": 0
+  },
+  {
+   "familia": "HE/PC",
+   "modelo": "PC200-8F",
+   "peca": "CAB",
+   "maquina": "",
+   "tp": 0
+  },
+  {
+   "familia": "HE/PC",
+   "modelo": "PC240LC-8",
+   "peca": "CAB",
+   "maquina": "",
+   "tp": 0
+  },
+  {
+   "familia": "HE/PC",
+   "modelo": "PC360LC-8M2",
+   "peca": "CAB",
+   "maquina": "",
+   "tp": 0
+  },
+  {
+   "familia": "HE/PC",
+   "modelo": "PC210-10M0",
+   "peca": "CAB",
+   "maquina": "",
+   "tp": 0
+  },
+  {
+   "familia": "HE/PC",
+   "modelo": "PC160LC-8",
+   "peca": "CAB",
+   "maquina": "",
+   "tp": 0
+  },
+  {
+   "familia": "CT",
+   "modelo": "D51-22",
+   "peca": "CAB",
+   "maquina": "",
+   "tp": 0
+  },
+  {
+   "familia": "CT",
+   "modelo": "D51-24",
+   "peca": "CAB",
+   "maquina": "",
+   "tp": 0
+  },
+  {
+   "familia": "CT",
+   "modelo": "D61-23",
+   "peca": "CAB",
+   "maquina": "",
+   "tp": 0
+  },
+  {
+   "familia": "CT",
+   "modelo": "D61-24",
+   "peca": "CAB",
+   "maquina": "",
+   "tp": 0
+  },
+  {
+   "familia": "WL/WA",
+   "modelo": "WA200-6",
+   "peca": "CAB",
+   "maquina": "",
+   "tp": 0
+  },
+  {
+   "familia": "WL/WA",
+   "modelo": "WA320-6",
+   "peca": "CAB",
+   "maquina": "",
+   "tp": 0
+  },
+  {
+   "familia": "WL/WA",
+   "modelo": "WA380-6",
+   "peca": "CAB",
+   "maquina": "",
+   "tp": 0
+  },
+  {
+   "familia": "MG",
+   "modelo": "GD655-5",
+   "peca": "CAB",
+   "maquina": "",
+   "tp": 0
+  }
+ ]
 }

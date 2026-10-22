@@ -47,8 +47,18 @@ npx vercel deploy
 - Fallback: Railway ou servidor próprio para Puppeteer completo
 
 ## Capacidade Produtiva (`/capacidade`)
-App web de capacidade da usinagem (UMC01, UMC02, NCBZ, HMC-16), com dados do Excel do Gilmar.
-- Edite cenários, turnos, plano, tempos e veja o impacto na hora. O estado fica salvo no navegador (Exportar/Importar JSON).
-- Motor de cálculo: `lib/capacidade.ts`. Dados: `tools/dados_usinagem.json`.
-- Excel equivalente: `Capacidade_Produtiva_Caldeiraria.xlsx`, gerado por `python3 tools/gerar_capacidade.py <saida.xlsx>`.
-- Reextrair dados: `python3 -I tools/extrair_usinagem.py <arquivo_original.xlsx>`.
+
+Aplicativo de gestão da capacidade da Caldeiraria e Usinagem, migrado do Excel do Gilmar (preserva a lógica de cálculo e os gráficos). Telas: Dashboard, Simulador, Usinagem, Células, Tempos padrão (edição direta + colar do Excel), Turnos e pessoas, Gráficos do Excel (G1–G8) e Importar/Exportar.
+
+```bash
+npm install
+npm run dev        # http://localhost:3000/capacidade
+npm test           # testes dos cálculos (valida contra o Excel)
+npm run build
+```
+
+- Cálculos: `lib/capacidade.ts` (funções puras testadas em `tests/`). Estado: `lib/store.tsx`. Gráficos: `components/graficos.tsx` (Recharts).
+- Sem configuração o app salva no navegador. Para login, papéis (leitor/editor/admin), histórico e dados compartilhados: crie um projeto no Supabase, rode `supabase/schema.sql`, copie `.env.example` para `.env.local` e preencha.
+- Publicação na Vercel: importe o repositório, defina `NEXT_PUBLIC_SUPABASE_URL` e `NEXT_PUBLIC_SUPABASE_ANON_KEY` (opcional) e faça o deploy. `.npmrc` já define `legacy-peer-deps`.
+- Excel equivalente: `Capacidade_Produtiva_Caldeiraria.xlsx` (gerado por `tools/gerar_capacidade.py`). Dados: `tools/dados_usinagem.json`, `tools/dados_graficos.json` (extraídos por `tools/extrair_usinagem.py`).
+- Documentos: `docs/INVENTARIO_GRAFICOS.md`, `docs/VALIDACAO.md`.

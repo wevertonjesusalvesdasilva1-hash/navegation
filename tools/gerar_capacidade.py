@@ -207,7 +207,7 @@ for s in range(1, 5):
             "E": f"=MAO_OBRA!{tcol[s]}{mo}",
             "F": f"=PARAMETROS!$C$4*(MAO_OBRA!{a}{mo}*{fl(18)}*PARAMETROS!$F$11+MAO_OBRA!{b}{mo}*{fl(19)}*PARAMETROS!$F$12+MAO_OBRA!{c}{mo}*{fl(20)}*PARAMETROS!$F$13)",
             "G": f"=F{r}*{fl(23)}*{fl(24)}",
-            "H": f"={fl(22)}*{fl(21)}*E{r}*{fl(23)}*{fl(24)}",
+            "H": f"={fl(22)}*{fl(21)}*E{r}",
             "I": (f'=IF(C{r}="",0,{fl(25)}/60*(IF({fl(27)}="Real",SUMPRODUCT(({BE}=C{r})*{BP}*{BL}*{BN}),SUMPRODUCT(({BE}=C{r})*{BP}*{BL}*{BH}))*{fl(26)}'
                   f'+SUMPRODUCT(({BE}=C{r})*{BP}*{BL}*{BO})))'),
             "J": f"=IF(G{r}>0,I{r}/G{r},0)", "K": f"=G{r}-I{r}", "L": f"=MAX(0,K{r})", "M": f"=MAX(0,-K{r})", "N": f"=M{r}",
@@ -247,7 +247,7 @@ for s in range(1, 5):
             "A": s, "B": j + 1, "C": f'=IF(PARAMETROS!B{32 + j}="","",PARAMETROS!B{32 + j})',
             "D": f"={fl(18)}+{fl(19)}+{fl(20)}",
             "E": f"=PARAMETROS!$C$4*({fl(18)}*PARAMETROS!$F$11+{fl(19)}*PARAMETROS!$F$12+{fl(20)}*PARAMETROS!$F$13)",
-            "F": f"=E{r}*{fl(23)}*{fl(24)}", "G": f"={fl(22)}*{fl(21)}*D{r}*{fl(23)}*{fl(24)}",
+            "F": f"=E{r}*{fl(23)}*{fl(24)}", "G": f"={fl(22)}*{fl(21)}*D{r}",
             "H": (f'=IF(C{r}="",0,{fl(25)}/60*(IF({fl(27)}="Real",SUMPRODUCT(({BF}=C{r})*{BL}*{BN}),SUMPRODUCT(({BF}=C{r})*{BL}*{BH}))*{fl(26)}'
                   f'+SUMPRODUCT(({BF}=C{r})*{BL}*{BO})))'),
             "I": f"=IF(F{r}>0,H{r}/F{r},0)", "J": f"=F{r}-H{r}", "K": f"=MAX(0,J{r})", "L": f"=MAX(0,-J{r})", "M": f"=L{r}",

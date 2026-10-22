@@ -2,7 +2,7 @@ export type Turno = { nome: string; ini: string; fim: string; pausa: number };
 export type Cenario = { nome: string; turnos: [boolean, boolean, boolean]; heH: number; heDias: number; efic: number; disp: number; fDem: number; fTempo: number; base: "Padrão" | "Real" };
 export type Celula = { nome: string; familia: string; func: [number, number, number][] }; // func[cenario][turno]
 export type Linha = { familia: string; modelo: string; peca: string; processo: string; celula: string; maquina: string; oper: number; tp: number; tr: number; setup: number; lote: number; dem: number };
-export type Estado = { diasMes: number; diasSem: number; amarelo: number; vermelho: number; sogyodo: "Nominal" | "Efetiva"; turnos: Turno[]; cenarios: Cenario[]; celulas: Celula[]; maquinas: string[]; linhas: Linha[] };
+export type Estado = { heRef: number; diasMes: number; diasSem: number; amarelo: number; vermelho: number; sogyodo: "Nominal" | "Efetiva"; turnos: Turno[]; cenarios: Cenario[]; celulas: Celula[]; maquinas: string[]; linhas: Linha[] };
 export type Status = "SEM CARGA" | "OK" | "ATENÇÃO" | "INSUFICIENTE";
 export type Res = { nome: string; familia: string; func: number; nominal: number; efetiva: number; extraHE: number; carga: number; util: number; saldo: number; ocioso: number; deficit: number; funcAdic: number; sogyodo: number; status: Status; capPc: number };
 
@@ -10,7 +10,7 @@ const mins = (s: string) => { const [h, m] = s.split(":").map(Number); return h 
 export const horasTurno = (t: Turno) => (((mins(t.fim) - mins(t.ini)) % 1440) + 1440) % 1440 / 60 - t.pausa / 60;
 
 export const novoEstado = (): Estado => ({
-  diasMes: 22, diasSem: 5, amarelo: 0.85, vermelho: 1, sogyodo: "Nominal", // PROVISÓRIO: confirmar
+  heRef: 0.8, diasMes: 22, diasSem: 5, amarelo: 0.85, vermelho: 1, sogyodo: "Nominal", // PROVISÓRIO: confirmar
   turnos: [{ nome: "A", ini: "06:00", fim: "14:00", pausa: 60 }, { nome: "B", ini: "14:00", fim: "22:00", pausa: 60 }, { nome: "C", ini: "22:00", fim: "06:00", pausa: 60 }],
   cenarios: [
     { nome: "Atual", turnos: [true, false, false], heH: 0, heDias: 0, efic: 0.85, disp: 0.9, fDem: 1, fTempo: 1, base: "Padrão" },
@@ -47,7 +47,7 @@ export function calcular(e: Estado, s: number) {
     const func = f.reduce((a, n, i) => a + (c.turnos[i] ? n : 0), 0);
     const nominal = e.diasMes * f.reduce((a, n, i) => a + (c.turnos[i] ? n * hT[i] : 0), 0);
     const efetiva = nominal * ef;
-    const extraHE = c.heDias * c.heH * func * ef;
+    const extraHE = c.heDias * c.heH * func;
     const carga = cargaRecurso(e, c, (l) => l.celula === x.nome, true);
     const util = efetiva > 0 ? carga / efetiva : 0;
     const dem = e.linhas.filter((l) => l.celula === x.nome).reduce((a, l) => a + l.dem, 0) * c.fDem;
@@ -58,7 +58,7 @@ export function calcular(e: Estado, s: number) {
   const maquinas: Res[] = e.maquinas.filter(Boolean).map((m) => {
     const nominal = e.diasMes * hAtivas;
     const efetiva = nominal * ef;
-    const extraHE = c.heDias * c.heH * nTurnos * ef;
+    const extraHE = c.heDias * c.heH * nTurnos;
     const carga = cargaRecurso(e, c, (l) => l.maquina === m, false);
     const util = efetiva > 0 ? carga / efetiva : 0;
     return { nome: m, familia: "", func: nTurnos, nominal, efetiva, extraHE, carga, util, saldo: efetiva - carga, ocioso: Math.max(0, efetiva - carga), deficit: Math.max(0, carga - efetiva),
@@ -95,6 +95,18 @@ export function calcular(e: Estado, s: number) {
     const x = mm.get(l.modelo) ?? { nome: l.modelo, familia: l.familia, horas: 0 };
     x.horas += hh; mm.set(l.modelo, x);
   }
+  const pilha: Record<string, Record<string, number>> = {};
+  for (const l of e.linhas) {
+    if (!l.maquina) continue;
+    const t = c.base === "Real" && l.tr > 0 ? l.tr : l.tp;
+    pilha[l.maquina] ??= {};
+    pilha[l.maquina][l.modelo] = (pilha[l.maquina][l.modelo] ?? 0) + (l.dem * (t * c.fTempo + (l.lote > 0 ? l.setup / l.lote : 0)) * c.fDem) / 60;
+  }
+  // linhas de capacidade do gráfico original (5.Load Graph): 1 turno, 1 turno+HE, 2 turnos, 2 turnos+HE
+  const capLinhas = { t1: e.diasMes * hT[0] * ef, t1he: e.diasMes * (hT[0] * ef + e.heRef), t2: e.diasMes * (hT[0] + hT[1]) * ef, t2he: e.diasMes * ((hT[0] + hT[1]) * ef + 2 * e.heRef) };
   const modelos = Array.from(mm.values()).sort((a, b) => b.horas - a.horas);
-  return { celulas, maquinas, turnosMaq, tot, modelos, gargalos: Array.from(fluxos.values()).sort((a, b) => b.util - a.util) };
+  return { celulas, maquinas, turnosMaq, tot, modelos, pilha, capLinhas, gargalos: Array.from(fluxos.values()).sort((a, b) => b.util - a.util) };
 }
+
+export const semTempo = (l: Linha) => !(l.tp > 0);
+export const FAMILIAS = ["HE/PC", "WL/WA", "CT", "MG"];
